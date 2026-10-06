@@ -12,7 +12,23 @@
 main{padding:23px;overflow:hidden}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.title h1{margin:0;font-size:24px}.title p{margin:5px 0;color:var(--muted);font-size:12px}.clock{background:#081c2d;border:1px solid var(--line);padding:9px 12px;border-radius:11px;color:#aac1d2;font-size:12px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.kpi{background:linear-gradient(145deg,#0a2133,#061624);border:1px solid var(--line);border-radius:15px;padding:14px}.kpi .label{color:#8ca7bb;font-size:11px}.kpi .value{font-size:22px;font-weight:800;margin-top:5px}.kpi .sub{font-size:10px;color:#6d899f;margin-top:3px}.tanks{display:grid;grid-template-columns:repeat(4,minmax(215px,1fr));gap:14px}.tank-card{background:linear-gradient(160deg,#0a1e30,#061522);border:1px solid #193b55;border-radius:17px;padding:13px;overflow:hidden;box-shadow:0 15px 42px #0006}.tank-head{display:flex;justify-content:space-between}.tank-name{font-weight:800}.tank-cap{font-size:10px;color:#7f9db3;margin-top:3px}.badge{font-size:10px;padding:4px 7px;border-radius:20px;background:#0c2a40;color:#a9c6d8}.tank-wrap{height:305px;display:flex;align-items:center;justify-content:center;position:relative}.tank-svg{width:100%;height:100%;max-width:235px}.level-text{position:absolute;bottom:14px;right:50%;transform:translateX(50%);background:#06131ee8;border:1px solid #31536d;padding:6px 10px;border-radius:10px;font-weight:700;font-size:12px}.stats{display:flex;justify-content:space-between;background:#071a2a;border:1px solid #17354d;border-radius:12px;padding:9px 11px}.litre{font-size:17px;font-weight:800}.percent{font-size:10px;color:#9ab1c1}.meter{height:5px;background:#122a3c;border-radius:9px;overflow:hidden;margin:9px 0}.meter i{display:block;height:100%;border-radius:9px;transition:width .8s}.take{width:100%;border:0;border-radius:11px;padding:11px;color:#fff;font:700 13px Vazirmatn;cursor:pointer}.panels{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:15px}.panel{background:#071a2a;border:1px solid var(--line);border-radius:17px;padding:15px}.panel h2{font-size:15px;margin:0 0 11px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.quick button{border:1px solid #214660;background:#0a2235;color:#dcecf7;border-radius:11px;padding:11px;font:600 12px Vazirmatn;cursor:pointer}.table{width:100%;border-collapse:collapse;font-size:11px}.table th,.table td{padding:9px;border-bottom:1px solid #153049;text-align:right}.table th{color:#7f9bb0}.empty{text-align:center;color:#6f899e;padding:17px}
 .modal{position:fixed;inset:0;background:#020912b8;display:none;align-items:center;justify-content:center;padding:16px;z-index:20;backdrop-filter:blur(7px)}.modal.show{display:flex}.dialog{width:min(900px,100%);background:linear-gradient(145deg,#0b2236,#06131f);border:1px solid #28516d;border-radius:19px;padding:19px;box-shadow:0 30px 90px #000c}.dialog h2{margin:0 0 4px;font-size:18px}.hint{color:#7996aa;font-size:11px;margin-bottom:13px}.field{margin:10px 0}.field label{display:block;color:#aac0cf;font-size:11px;margin-bottom:5px}.field input,.field select{width:100%;background:#081b2c;border:1px solid #24465f;color:#fff;border-radius:10px;padding:10px;font:inherit}.actions{display:flex;gap:8px;margin-top:14px}.actions button{flex:1;border:0;border-radius:10px;padding:10px;font:700 12px Vazirmatn;cursor:pointer}.cancel{background:#183148;color:#bfd2df}.save{background:#0b9bef;color:#fff}.error{color:#ff7373;font-size:11px;min-height:17px}.login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,#0c3150,#04101b 55%)}.loginbox{width:min(410px,92%);background:#081b2b;border:1px solid #214660;border-radius:20px;padding:25px;box-shadow:0 25px 80px #0009}.loginbox h1{font-size:20px;margin:0 0 5px}.loginbox p{font-size:11px;color:#86a2b7;margin:0 0 18px}.logout{margin-top:15px;width:100%;padding:10px;border:1px solid #254963;background:#0a2033;color:#c9d9e5;border-radius:10px;font:600 12px Vazirmatn;cursor:pointer}
 @media(max-width:1100px){.tanks{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}.panels{grid-template-columns:1fr}}@media(max-width:760px){.app{display:block}.sidebar{height:auto;position:relative;padding:9px;border-left:0;border-bottom:1px solid var(--line)}.logo{padding:3px 7px 9px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:8px 10px}.online{display:none}main{padding:12px}.clock{display:none}.tanks{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:1fr}}
-@media print{body{background:#fff!important;color:#111!important}body *{visibility:hidden!important}#printArea,#printArea *{visibility:visible!important}#printArea{position:absolute;left:0;top:0;width:100%;background:#fff!important;color:#111!important;padding:18px}#printArea .print-title{color:#111!important;font-size:20px;font-weight:800;margin-bottom:6px}#printArea .print-meta{color:#333!important;font-size:12px;margin-bottom:14px}#printArea .kpi{background:#fff!important;border:1px solid #999!important;color:#111!important}#printArea .kpi .label,#printArea .kpi .sub{color:#444!important}#printArea .kpi .value{color:#111!important}#printArea .table{color:#111!important;background:#fff!important}#printArea .table th,#printArea .table td{color:#111!important;border-bottom:1px solid #aaa!important}#printArea .table th{background:#eee!important}}</style>
+@media print{body{background:#fff!important;color:#111!important}body *{visibility:hidden!important}#printArea,#printArea *{visibility:visible!important}#printArea{position:absolute;left:0;top:0;width:100%;background:#fff!important;color:#111!important;padding:18px}#printArea .print-title{color:#111!important;font-size:20px;font-weight:800;margin-bottom:6px}#printArea .print-meta{color:#333!important;font-size:12px;margin-bottom:14px}#printArea .kpi{background:#fff!important;border:1px solid #999!important;color:#111!important}#printArea .kpi .label,#printArea .kpi .sub{color:#444!important}#printArea .kpi .value{color:#111!important}#printArea .table{color:#111!important;background:#fff!important}#printArea .table th,#printArea .table td{color:#111!important;border-bottom:1px solid #aaa!important}#printArea .table th{background:#eee!important}}
+/* ===== بخش بازرسی و چک‌لیست ===== */
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.audit-card{background:linear-gradient(145deg,#0a2133,#061624);border:1px solid #214660;border-radius:16px;padding:15px;cursor:pointer}
+.audit-card:hover{border-color:#2d79a6;transform:translateY(-1px)}
+.audit-card .big{font-size:25px;font-weight:800}.audit-card .small{font-size:11px;color:#8ca7bb;margin-top:4px}
+.star{color:#ffd43b;letter-spacing:1px}.star.off{color:#385064}
+.audit-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.audit-toolbar button{border:1px solid #214660;background:#0a2235;color:#dcecf7;border-radius:10px;padding:9px 12px;font:600 11px Vazirmatn;cursor:pointer}
+.person-row,.equip-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#081c2d;border:1px solid #173b54;border-radius:12px;padding:11px;margin:7px 0}
+.person-main{min-width:0}.person-name{font-weight:800}.person-sub{font-size:10px;color:#7f9bb0;margin-top:3px}
+.audit-status{font-size:10px;padding:4px 7px;border-radius:15px;background:#12334a}.good{color:#62e6a1}.bad{color:#ff7b7b}.warn{color:#ffd66b}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{border:1px solid #284d67;background:#0a2235;padding:6px 9px;border-radius:9px;font-size:10px;cursor:pointer}.chip.selected{border-color:#f2bd20;background:#3a2b0b;color:#ffe48a}
+.nc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.nc-item{border:1px solid #24465f;background:#081b2c;border-radius:11px;padding:10px;cursor:pointer}.nc-item input{margin-left:7px}
+.photo-box{border:1px dashed #315a75;background:#071a2a;border-radius:12px;padding:12px;text-align:center;margin-top:10px}.photo-preview{max-width:100%;max-height:220px;border-radius:10px;margin-top:8px}
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.category-card{background:#081c2d;border:1px solid #214660;border-radius:13px;padding:13px;cursor:pointer}.category-card:hover{border-color:#2d79a6}.category-card .cat-count{font-size:21px;font-weight:800}.category-card .cat-name{font-weight:800}.category-tools{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.category-tools button{border:1px solid #214660;background:#0a2235;color:#dcecf7;border-radius:9px;padding:8px 10px;font:600 11px Vazirmatn;cursor:pointer}.report-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px}.report-card{background:#081c2d;border:1px solid #173b54;border-radius:12px;padding:11px}.report-card b{font-size:18px}.report-card span{display:block;color:#7f9bb0;font-size:10px;margin-bottom:3px}
+@media(max-width:760px){.audit-grid{grid-template-columns:1fr}.nc-grid{grid-template-columns:1fr}.report-cards{grid-template-columns:repeat(2,1fr)}.category-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
 <div id="root"></div>
@@ -24,7 +40,7 @@ const colors=['#c5d629','#5a3828','#d88b12','#f2bd20'];
 let tanks=[],ops=[],modal=document.getElementById('modal');
 const fa=n=>Number(n).toLocaleString('fa-IR'); const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 function svg(t,i){const p=Math.max(0,Math.min(100,t.stock/t.capacity*100)),y=302-p*2.05,u='g'+i;return `<svg class="tank-svg" viewBox="0 0 250 340"><defs><linearGradient id="${u}m"><stop stop-color="#4b5964"/><stop offset=".2" stop-color="#e4ebef"/><stop offset=".38" stop-color="#65727d"/><stop offset=".58" stop-color="#f5f8fa"/><stop offset=".78" stop-color="#65727d"/><stop offset="1" stop-color="#26323b"/></linearGradient><linearGradient id="${u}l" x2="0" y2="1"><stop stop-color="${t.color}"/><stop offset="1" stop-color="${t.color}" stop-opacity=".55"/></linearGradient><clipPath id="${u}c"><rect x="47" y="85" width="156" height="218" rx="29"/></clipPath></defs><ellipse cx="125" cy="313" rx="91" ry="12" fill="#000" opacity=".45"/><path d="M63 92Q63 62 91 51h68q28 11 28 41l14 10v190q0 21-20 21H69q-20 0-20-21V102Z" fill="url(#${u}m)" stroke="#b9c5cc" stroke-width="2"/><rect x="47" y="85" width="156" height="218" rx="29" fill="#07131d" stroke="#d0d9df" stroke-width="3"/><g clip-path="url(#${u}c)"><rect x="47" y="${y}" width="156" height="${303-y}" fill="url(#${u}l)"/><path d="M35 ${y}Q65 ${y-9} 95 ${y}T155 ${y}T215 ${y}" fill="none" stroke="${t.color}" stroke-width="5"><animate attributeName="d" dur="3s" repeatCount="indefinite" values="M35 ${y}Q65 ${y-9} 95 ${y}T155 ${y}T215 ${y};M35 ${y}Q65 ${y+8} 95 ${y}T155 ${y+8}T215 ${y};M35 ${y}Q65 ${y-9} 95 ${y}T155 ${y}T215 ${y}"/></path></g><ellipse cx="125" cy="51" rx="34" ry="10" fill="#9aa6ae" stroke="#e4eaee" stroke-width="2"/><rect x="99" y="34" width="52" height="17" rx="7" fill="url(#${u}m)" stroke="#d9e0e5" stroke-width="2"/><path d="M78 85V66L62 55" fill="none" stroke="#bcc7cd" stroke-width="6"/><circle cx="61" cy="54" r="5" fill="#7c8992"/><path d="M202 105h17v180h-17M219 110h12M219 145h8M219 180h12M219 215h8M219 250h12M219 285h12" fill="none" stroke="#d2d9de" stroke-width="2"/><path d="M48 246H34v18h14" fill="none" stroke="#aebac2" stroke-width="4"/><circle cx="29" cy="264" r="7" fill="${t.color}"/></svg>`}
-function render(){let cap=tanks.reduce((a,t)=>a+t.capacity,0),stock=tanks.reduce((a,t)=>a+t.stock,0);document.getElementById('root').innerHTML=`<div class="app"><aside class="sidebar"><div class="logo"><span>⚙</span> سامانه مدیریت مخازن روغن</div><div class="nav"><button class="active">⌂ داشبورد</button><button onclick="withdraw()">♢ برداشت</button><button onclick="entry()">＋ ورود روغن</button><button onclick="report()">▥ گزارش‌ها</button><button>♙ کاربران</button><button>⚙ تنظیمات</button></div><div class="online"><span class="dot"></span> اتصال به دیتابیس فعال</div></aside><main><div class="top"><div class="title"><h1>نمایش لحظه‌ای مخازن</h1><p>اطلاعات مشترک و آنلاین برای تمام دستگاه‌ها</p></div><div class="clock" id="clock"></div></div><section class="kpis"><div class="kpi"><div class="label">ظرفیت کل</div><div class="value">${fa(cap)} L</div><div class="sub">۴ مخزن</div></div><div class="kpi"><div class="label">موجودی فعلی</div><div class="value">${fa(stock)} L</div><div class="sub">${fa(stock/cap*100)}٪ ظرفیت</div></div><div class="kpi"><div class="label">برداشت امروز</div><div class="value" id="outToday">۰ L</div><div class="sub">ثبت‌شده در سیستم</div></div><div class="kpi"><div class="label">ورود امروز</div><div class="value" id="inToday">۰ L</div><div class="sub">ثبت‌شده در سیستم</div></div></section><section class="tanks">${tanks.map((t,i)=>{let p=t.stock/t.capacity*100;return `<article class="tank-card"><div class="tank-head"><div><div class="tank-name">${esc(t.name)}</div><div class="tank-cap">ظرفیت: ${fa(t.capacity)} لیتر</div></div><span class="badge">${p<15?'بحرانی':p<30?'هشدار':'عادی'}</span></div><div class="tank-wrap">${svg(t,i)}<div class="level-text">${fa(t.stock)} لیتر — ${fa(p.toFixed(0))}٪</div></div><div class="stats"><div><div class="percent">موجودی فعلی</div><div class="litre">${fa(t.stock)} L</div></div><div><div class="percent">پرشدگی</div><b>${fa(p.toFixed(1))}%</b></div></div><div class="meter"><i style="width:${p}%;background:${t.color}"></i></div><button class="take" style="background:linear-gradient(90deg,${t.color},#5b430c)" onclick="withdraw(${i})">💧 برداشت از مخزن</button></article>`}).join('')}</section><section class="panels"><div class="panel"><h2>عملیات سریع</h2><div class="quick"><button onclick="entry()">＋ ورود روغن به مخزن</button><button onclick="withdraw()">− ثبت برداشت</button><button onclick="report()">▥ گزارش‌ها</button></div></div><div class="panel"><h2>آخرین عملیات</h2><table class="table"><thead><tr><th>نوع</th><th>مخزن</th><th>مقدار</th><th>زمان</th></tr></thead><tbody>${ops.slice(0,7).map(x=>`<tr><td>${x.type==='in'?'ورود':'برداشت'}</td><td>${esc(x.tank_name)}</td><td>${fa(x.amount_l)} L</td><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">هنوز عملیاتی ثبت نشده است.</td></tr>'}</tbody></table></div></section></main></div>`}
+function render(){let cap=tanks.reduce((a,t)=>a+t.capacity,0),stock=tanks.reduce((a,t)=>a+t.stock,0);document.getElementById('root').innerHTML=`<div class="app"><aside class="sidebar"><div class="logo"><span>⚙</span> سامانه مدیریت مخازن روغن</div><div class="nav"><button class="active">⌂ داشبورد</button><button onclick="withdraw()">♢ برداشت</button><button onclick="entry()">＋ ورود روغن</button><button onclick="report()">▥ گزارش‌ها</button><button onclick="auditHome()">🔍 بازرسی تجهیزات</button><button>♙ کاربران</button><button>⚙ تنظیمات</button></div><div class="online"><span class="dot"></span> اتصال به دیتابیس فعال</div></aside><main><div class="top"><div class="title"><h1>نمایش لحظه‌ای مخازن</h1><p>اطلاعات مشترک و آنلاین برای تمام دستگاه‌ها</p></div><div class="clock" id="clock"></div></div><section class="kpis"><div class="kpi"><div class="label">ظرفیت کل</div><div class="value">${fa(cap)} L</div><div class="sub">۴ مخزن</div></div><div class="kpi"><div class="label">موجودی فعلی</div><div class="value">${fa(stock)} L</div><div class="sub">${fa(stock/cap*100)}٪ ظرفیت</div></div><div class="kpi"><div class="label">برداشت امروز</div><div class="value" id="outToday">۰ L</div><div class="sub">ثبت‌شده در سیستم</div></div><div class="kpi"><div class="label">ورود امروز</div><div class="value" id="inToday">۰ L</div><div class="sub">ثبت‌شده در سیستم</div></div></section><section class="tanks">${tanks.map((t,i)=>{let p=t.stock/t.capacity*100;return `<article class="tank-card"><div class="tank-head"><div><div class="tank-name">${esc(t.name)}</div><div class="tank-cap">ظرفیت: ${fa(t.capacity)} لیتر</div></div><span class="badge">${p<15?'بحرانی':p<30?'هشدار':'عادی'}</span></div><div class="tank-wrap">${svg(t,i)}<div class="level-text">${fa(t.stock)} لیتر — ${fa(p.toFixed(0))}٪</div></div><div class="stats"><div><div class="percent">موجودی فعلی</div><div class="litre">${fa(t.stock)} L</div></div><div><div class="percent">پرشدگی</div><b>${fa(p.toFixed(1))}%</b></div></div><div class="meter"><i style="width:${p}%;background:${t.color}"></i></div><button class="take" style="background:linear-gradient(90deg,${t.color},#5b430c)" onclick="withdraw(${i})">💧 برداشت از مخزن</button></article>`}).join('')}</section><section class="panels"><div class="panel"><h2>عملیات سریع</h2><div class="quick"><button onclick="entry()">＋ ورود روغن به مخزن</button><button onclick="withdraw()">− ثبت برداشت</button><button onclick="report()">▥ گزارش‌ها</button><button onclick="auditHome()">🔍 بازرسی تجهیزات</button></div></div><div class="panel"><h2>آخرین عملیات</h2><table class="table"><thead><tr><th>نوع</th><th>مخزن</th><th>مقدار</th><th>زمان</th></tr></thead><tbody>${ops.slice(0,7).map(x=>`<tr><td>${x.type==='in'?'ورود':'برداشت'}</td><td>${esc(x.tank_name)}</td><td>${fa(x.amount_l)} L</td><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">هنوز عملیاتی ثبت نشده است.</td></tr>'}</tbody></table></div></section></main></div>`}
 async function load(){const {data:t,error:e}=await sb.from('tanks').select('*').order('id');if(e){alert('اتصال به دیتابیس تنظیم نشده یا خطا دارد.');return}tanks=t.map((x,i)=>({...x,stock:Number(x.stock_l||0),capacity:Number(x.capacity_l||0),color:colors[i]}));const {data:o}=await sb.from('transactions').select('*').order('created_at',{ascending:false}).limit(500);ops=o||[];render();const today=new Date();today.setHours(0,0,0,0);let out=ops.filter(x=>x.type==='out'&&new Date(x.created_at)>=today).reduce((a,x)=>a+x.amount_l,0),inn=ops.filter(x=>x.type==='in'&&new Date(x.created_at)>=today).reduce((a,x)=>a+x.amount_l,0);document.getElementById('outToday').textContent=fa(out)+' L';document.getElementById('inToday').textContent=fa(inn)+' L'}
 async function entry(){let opts=tanks.map((t,i)=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');dialog(`<h2>＋ ورود روغن به مخزن</h2><div class="hint">نوع روغن و مقدار ورودی را انتخاب کنید.</div><div class="field"><label>نوع روغن / مخزن</label><select id="ti">${opts}</select></div><div class="field"><label>مقدار ورود (لیتر)</label><input id="ia" type="number" min="1"></div><div class="error" id="er"></div><div class="actions"><button class="cancel" onclick="closeM()">انصراف</button><button class="save" onclick="saveIn()">✓ ثبت ورود</button></div>`)}
 async function saveIn(){let id=+document.getElementById('ti').value,a=Number(document.getElementById('ia').value),t=tanks.find(x=>x.id===id),er=document.getElementById('er');if(a<=0){er.textContent='مقدار را وارد کنید.';return}if(t.stock+a>t.capacity){er.textContent='از ظرفیت مخزن بیشتر می‌شود.';return}let {error}=await sb.rpc('record_stock_transaction',{p_tank_id:id,p_type:'in',p_amount_l:a,p_operator:'ورود انبار',p_equipment:null});if(error){er.textContent=error.message;return}closeM();load()}
@@ -35,6 +51,186 @@ function report(){dialog(`<h2>گزارش‌ها</h2><div class="hint">گزارش
 function setReportType(type){window.reportType=type;let ob=document.getElementById('rOutBtn'),ib=document.getElementById('rInBtn');if(!ob||!ib)return;ob.className=type==='out'?'save':'cancel';ib.className=type==='in'?'save':'cancel';let rb=document.getElementById('rb');if(rb)rb.innerHTML=`<div class="hint" style="text-align:center">دوره گزارش را انتخاب کنید.</div>`}
 
 async function reportData(type,p){window.reportType=type;window.reportPeriod=p;let d=new Date(),start=new Date(d);if(p==='daily')start.setHours(0,0,0,0);if(p==='weekly'){start.setDate(d.getDate()-6);start.setHours(0,0,0,0)}if(p==='monthly'){start.setDate(1);start.setHours(0,0,0,0)}if(p==='quarterly'){start.setMonth(d.getMonth()-3);start.setHours(0,0,0,0)}if(p==='6months'){start.setMonth(d.getMonth()-6);start.setHours(0,0,0,0)}if(p==='yearly'){start.setFullYear(d.getFullYear()-1);start.setHours(0,0,0,0)}let rb=document.getElementById('rb');if(rb)rb.innerHTML='<div class="hint">در حال دریافت گزارش...</div>';let {data:o,error}=await sb.from('transactions').select('*').eq('type',type).gte('created_at',start.toISOString()).order('created_at',{ascending:false});if(error){if(rb)rb.innerHTML=`<div class="error">${esc(error.message)}</div>`;return}o=o||[];let total=o.reduce((a,x)=>a+Number(x.amount_l||0),0),title=type==='out'?'گزارش برداشت روغن':'گزارش ورود روغن',period={daily:'روزانه',weekly:'هفتگی',monthly:'ماهانه',quarterly:'۳ ماهه','6months':'۶ ماهه',yearly:'۱ ساله'}[p]||'',rows=o.map(x=>{let op=x.operator??x.p_operator??x.operator_name??'';let eq=x.equipment??x.p_equipment??x.equipment_code??'';return `<tr><td>${esc(x.tank_name||'—')}</td><td>${fa(x.amount_l||0)} L</td><td>${esc(op||'—')}</td><td>${esc(eq||'—')}</td><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td></tr>`}).join('');if(rb)rb.innerHTML=`<div id="printArea"><div class="print-title">${title}</div><div class="print-meta">بازه گزارش: ${period} — تاریخ چاپ: ${new Date().toLocaleString('fa-IR')}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px"><div class="kpi"><div class="label">${title} — ${period}</div><div class="value">${fa(total)} L</div></div><div class="kpi"><div class="label">تعداد عملیات</div><div class="value">${fa(o.length)}</div></div></div><div style="overflow:auto;border:1px solid #17364d;border-radius:11px"><table class="table"><thead><tr><th>مخزن</th><th>مقدار</th><th>${type==='out'?'اپراتور':'ثبت‌کننده'}</th><th>کد تجهیز</th><th>تاریخ / ساعت</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">در این بازه گزارشی ثبت نشده است.</td></tr>'}</tbody></table></div></div><div class="actions" style="margin-top:10px"><button class="save" onclick="printReport()">🖨️ چاپ گزارش</button></div>`}
+
+
+/* ==================== AUDIT / CHECKLIST ==================== */
+let auditOps=[], auditEquip=[], auditIns=[], auditCats=[], selectedPhotoFile=null, auditCategoryFilter=null;
+
+function starHTML(score){
+  if(score===null || score===undefined || isNaN(score)) return '<span class="star off">☆☆☆☆☆</span>';
+  let n=Math.max(0,Math.min(5,Math.round(Number(score)/20)));
+  return '<span class="star">'+'★'.repeat(n)+'</span><span class="star off">'+'☆'.repeat(5-n)+'</span>';
+}
+function auditScore(inspections){
+  if(!inspections.length) return null;
+  const weights={'نظافت بدنه':5,'نظافت اطراف':5,'عدم بررسی':20,'چک روغن':8,'خرابی آب صابون':10,'نشتی':12,'خرابی تجهیز':15,'سایر':10};
+  let penalty=0;
+  inspections.forEach(x=>(x.nonconformities||[]).forEach(n=>penalty+=(weights[n]||10)));
+  return Math.max(0,Math.min(100,100-(penalty/inspections.length)));
+}
+async function loadAudit(){
+  const [op,equip,ins,nc]=await Promise.all([
+    sb.from('audit_operators').select('*').eq('active',true).order('name'),
+    sb.from('audit_equipment').select('*').eq('active',true).order('code'),
+    sb.from('audit_categories').select('*').eq('active',true).order('sort_order').order('name'),
+    sb.from('audit_inspections').select('*').order('created_at',{ascending:false}).limit(2000),
+    sb.from('audit_nonconformities').select('*')
+  ]);
+  if(op.error||equip.error||ins.error||nc.error){
+    const er=op.error||equip.error||ins.error||nc.error;
+    dialog(`<h2>راه‌اندازی بخش بازرسی</h2><div class="error">${esc(er.message)}</div><div class="hint">ابتدا فایل SQL همراه نسخه جدید را در Supabase اجرا کنید.</div><div class="actions"><button class="cancel" onclick="closeM()">بستن</button></div>`);
+    return false;
+  }
+  auditOps=op.data||[]; auditEquip=equip.data||[]; auditCats=cats.data||[];
+  const ncs=nc.data||[];
+  auditIns=(ins.data||[]).map(x=>({...x,nonconformities:ncs.filter(n=>n.inspection_id===x.id).map(n=>n.type)}));
+  return true;
+}
+async function auditHome(){
+  if(!(await loadAudit())) return;
+  const total=auditEquip.length;
+  const checkedToday=new Set(auditIns.filter(x=>new Date(x.created_at).toDateString()===new Date().toDateString()).map(x=>x.equipment_id)).size;
+  const ncCount=auditIns.reduce((a,x)=>a+(x.nonconformities||[]).length,0);
+  const scored=auditOps.map(o=>({o,ins:auditIns.filter(x=>x.operator_id===o.id),score:auditScore(auditIns.filter(x=>x.operator_id===o.id))})).filter(x=>x.score!==null).sort((a,b)=>b.score-a.score);
+  dialog(`<h2>🔍 بازرسی و چک‌لیست تجهیزات</h2>
+  <div class="hint">این بخش فقط برای بازرس است. اپراتورها هیچ دسترسی یا حساب کاربری ندارند.</div>
+  <div class="audit-grid">
+    <div class="audit-card" onclick="auditOperators()"><div class="big">${fa(auditOps.length)}</div><div class="small">اپراتورها</div></div>
+    <div class="audit-card" onclick="auditEquipment()"><div class="big">${fa(total)}</div><div class="small">تجهیزات</div></div>
+    <div class="audit-card"><div class="big">${fa(checkedToday)}</div><div class="small">تجهیزات بازرسی‌شده امروز</div></div>
+    <div class="audit-card"><div class="big">${fa(ncCount)}</div><div class="small">عدم انطباق‌های ثبت‌شده</div></div>
+  </div>
+  <div class="audit-toolbar">
+    <button onclick="auditOperators()">👤 اپراتورها</button>
+    <button onclick="auditEquipment()">⚙️ تجهیزات</button>
+    <button onclick="auditCategories()">🗂️ دسته‌بندی تجهیزات</button>
+    <button onclick="auditRanking()">🏆 رتبه‌بندی و امتیاز</button>
+    <button onclick="auditHistory()">📋 تاریخچه بازرسی</button>
+    <button onclick="auditAddOperator()">＋ اپراتور</button>
+    <button onclick="auditAddEquipment()">＋ تجهیز</button>
+  </div>
+  <div class="panel" style="padding:12px"><h2>🗂️ دسته‌بندی تجهیزات</h2><div class="hint">دسته‌ها را خودت از داخل اپ اضافه، ویرایش یا غیرفعال کن.</div><div class="category-grid">${auditCats.map(c=>`<div class="category-card" onclick="auditEquipment('${c.id}')"><div class="cat-name">${esc(c.name)}</div><div class="cat-count">${fa(auditEquip.filter(e=>e.category_id===c.id).length)}</div><div class="person-sub">تجهیز</div></div>`).join('')||'<div class="empty">هنوز دسته‌ای ثبت نشده است.</div>'}</div><div class="actions"><button class="save" onclick="auditCategories()">⚙️ مدیریت دسته‌ها</button></div>
+  <div class="panel" style="padding:12px"><h2>🏆 برترین اپراتورها</h2>
+  ${scored.slice(0,5).map(x=>`<div class="person-row"><div class="person-main"><div class="person-name">${esc(x.o.name)}</div><div class="person-sub">${fa(x.ins.length)} بازرسی</div></div><div>${starHTML(x.score)} <b>${fa(x.score.toFixed(0))}٪</b></div></div>`).join('')||'<div class="empty">هنوز بازرسی ثبت نشده است.</div>'}</div>
+  <div class="actions"><button class="cancel" onclick="closeM()">بستن</button></div>`);
+}
+async function auditOperators(){
+  if(!auditOps.length) await loadAudit();
+  dialog(`<h2>👤 اپراتورها</h2><div class="hint">با انتخاب اپراتور، تجهیزات تحت مسئولیت او نمایش داده می‌شود.</div>
+  ${auditOps.map(o=>{
+    const eq=auditEquip.filter(e=>e.operator_id===o.id), ins=auditIns.filter(x=>x.operator_id===o.id), sc=auditScore(ins);
+    const bad=ins.reduce((a,x)=>a+(x.nonconformities||[]).length,0);
+    return `<div class="person-row" onclick="auditOperator('${o.id}')"><div class="person-main"><div class="person-name">${esc(o.name)}</div><div class="person-sub">${fa(eq.length)} تجهیز · ${fa(ins.length)} بازرسی · ${fa(bad)} عدم انطباق</div></div><div>${starHTML(sc)}<br><span class="person-sub">${sc===null?'بدون امتیاز':fa(sc.toFixed(0))+'٪'}</span></div></div>`
+  }).join('')||'<div class="empty">اپراتوری ثبت نشده است.</div>'}
+  <div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+}
+async function auditOperator(id){
+  const o=auditOps.find(x=>x.id===id), eq=auditEquip.filter(e=>e.operator_id===id), ins=auditIns.filter(x=>x.operator_id===id), sc=auditScore(ins);
+  dialog(`<h2>👤 ${esc(o.name)}</h2><div class="hint">${starHTML(sc)} ${sc===null?'هنوز امتیازی ندارد':fa(sc.toFixed(0))+'٪'} — تجهیزات تحت مسئولیت</div>
+  ${eq.map(e=>{
+    const last=auditIns.find(x=>x.equipment_id===e.id);
+    return `<div class="equip-row"><div class="person-main"><div class="person-name">${esc(e.code)} — ${esc(e.name||'تجهیز')}</div><div class="person-sub">${last?'آخرین بازرسی: '+new Date(last.created_at).toLocaleString('fa-IR'):'هنوز بازرسی نشده'}</div></div><button class="save" style="border:0;border-radius:9px;padding:8px 11px;font:700 11px Vazirmatn;cursor:pointer" onclick="auditForm('${e.id}')">🔍 بازرسی</button></div>`
+  }).join('')||'<div class="empty">تجهیزی برای این اپراتور ثبت نشده است.</div>'}
+  <div class="actions"><button class="cancel" onclick="auditOperators()">بازگشت</button></div>`);
+}
+const NC_OPTIONS=['نظافت بدنه','نظافت اطراف','عدم بررسی','چک روغن','خرابی آب صابون','نشتی','خرابی تجهیز','سایر'];
+async function auditForm(equipmentId){
+  const e=auditEquip.find(x=>x.id===equipmentId), o=auditOps.find(x=>x.id===e.operator_id);
+  selectedPhotoFile=null;
+  dialog(`<h2>🔍 بازرسی تجهیز ${esc(e.code)}</h2><div class="hint">اپراتور: ${esc(o?.name||'—')} — ثبت توسط بازرس</div>
+  <div class="field"><label>نتیجه بازرسی</label><div class="chips"><button class="chip selected" id="okChip" onclick="setAuditOK()">🟢 بدون مشکل</button><button class="chip" id="ncChip" onclick="setAuditNC()">🔴 دارای عدم انطباق</button></div></div>
+  <div id="ncArea" style="display:none"><div class="field"><label>نوع عدم انطباق</label><div class="nc-grid">${NC_OPTIONS.map((n,i)=>`<label class="nc-item"><input type="checkbox" value="${esc(n)}"> ${esc(n)}</label>`).join('')}</div></div></div>
+  <div class="field"><label>توضیحات بازرس</label><input id="auditNote" placeholder="توضیحات..."></div>
+  <div class="photo-box">📷 عکس عدم انطباق<br><input id="auditPhoto" type="file" accept="image/*" capture="environment" onchange="previewAuditPhoto(this)"><div id="photoPreview"></div></div>
+  <div class="error" id="auditErr"></div>
+  <div class="actions"><button class="cancel" onclick="auditOperator('${o.id}')">انصراف</button><button class="save" onclick="saveAudit('${e.id}')">✓ ثبت بازرسی</button></div>`);
+  window.auditResult='ok';
+}
+function setAuditOK(){window.auditResult='ok';document.getElementById('okChip').classList.add('selected');document.getElementById('ncChip').classList.remove('selected');document.getElementById('ncArea').style.display='none'}
+function setAuditNC(){window.auditResult='nc';document.getElementById('ncChip').classList.add('selected');document.getElementById('okChip').classList.remove('selected');document.getElementById('ncArea').style.display='block'}
+function previewAuditPhoto(inp){
+  selectedPhotoFile=inp.files?.[0]||null; const box=document.getElementById('photoPreview'); if(!selectedPhotoFile){box.innerHTML='';return}
+  const r=new FileReader(); r.onload=()=>box.innerHTML=`<img class="photo-preview" src="${r.result}">`; r.readAsDataURL(selectedPhotoFile);
+}
+async function saveAudit(equipmentId){
+  const e=auditEquip.find(x=>x.id===equipmentId), o=auditOps.find(x=>x.id===e.operator_id);
+  const err=document.getElementById('auditErr'), note=document.getElementById('auditNote').value.trim();
+  let ncs=[...document.querySelectorAll('#ncArea input:checked')].map(x=>x.value);
+  if(window.auditResult==='nc'&&!ncs.length){err.textContent='حداقل یک عدم انطباق را انتخاب کنید.';return}
+  let photo_url=null;
+  if(selectedPhotoFile){
+    const ext=(selectedPhotoFile.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'');
+    const path=`${o.id}/${e.id}/${Date.now()}.${ext||'jpg'}`;
+    const up=await sb.storage.from('inspection-photos').upload(path,selectedPhotoFile,{upsert:false,contentType:selectedPhotoFile.type||'image/jpeg'});
+    if(up.error){err.textContent='آپلود عکس انجام نشد: '+up.error.message;return}
+    photo_url=sb.storage.from('inspection-photos').getPublicUrl(path).data.publicUrl;
+  }
+  const ins={equipment_id:e.id,operator_id:o.id,result:window.auditResult,note,photo_url};
+  const {data,rowError}=await sb.from('audit_inspections').insert(ins).select().single();
+  if(rowError){err.textContent=rowError.message;return}
+  if(ncs.length){const r=await sb.from('audit_nonconformities').insert(ncs.map(type=>({inspection_id:data.id,type})));if(r.error){err.textContent=r.error.message;return}}
+  await loadAudit(); auditOperator(o.id);
+}
+async function auditEquipment(categoryId=null){
+  if(!auditEquip.length || !auditCats.length) await loadAudit();
+  auditCategoryFilter=categoryId;
+  const cat=auditCats.find(c=>c.id===categoryId);
+  const list=categoryId?auditEquip.filter(e=>e.category_id===categoryId):auditEquip;
+  dialog(`<h2>⚙️ ${cat?esc(cat.name):'همه تجهیزات'}</h2><div class="hint">${cat?'تجهیزات این دسته':'تمام تجهیزات'} — می‌توانی دسته‌بندی را از مدیریت دسته‌ها تغییر بدهی.</div>
+  <div class="category-tools"><button onclick="auditEquipment(null)">همه</button>${auditCats.map(c=>`<button onclick="auditEquipment('${c.id}')">${esc(c.name)} (${fa(auditEquip.filter(e=>e.category_id===c.id).length)})</button>`).join('')}</div>
+  ${list.map(e=>{const o=auditOps.find(x=>x.id===e.operator_id),last=auditIns.find(x=>x.equipment_id===e.id),c=auditCats.find(x=>x.id===e.category_id);return `<div class="equip-row"><div class="person-main"><div class="person-name">${esc(e.code)} — ${esc(e.name||'تجهیز')}</div><div class="person-sub">${esc(c?.name||'بدون دسته')} · اپراتور: ${esc(o?.name||'بدون اپراتور')} · ${last?(last.result==='ok'?'🟢 بدون مشکل':'🔴 عدم انطباق'):'⚪ بدون سابقه'}</div></div><div style="display:flex;gap:6px"><button class="save" style="border:0;border-radius:9px;padding:8px 11px;font:700 11px Vazirmatn;cursor:pointer" onclick="auditForm('${e.id}')">🔍</button><button class="chip" onclick="auditEditEquipment('${e.id}')">✏️</button></div></div>`}).join('')||'<div class="empty">تجهیزی در این دسته ثبت نشده است.</div>'}
+  <div class="actions"><button class="save" onclick="auditAddEquipment()">＋ افزودن تجهیز</button><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+}
+async function auditCategories(){
+  if(!auditCats.length) await loadAudit();
+  dialog(`<h2>🗂️ مدیریت دسته‌بندی تجهیزات</h2><div class="hint">این دسته‌ها کاملاً قابل تغییر هستند؛ دسته جدید اضافه کن یا دسته موجود را ویرایش/غیرفعال کن.</div>
+  ${auditCats.map(c=>`<div class="person-row"><div class="person-main"><div class="person-name">${esc(c.name)}</div><div class="person-sub">${fa(auditEquip.filter(e=>e.category_id===c.id).length)} تجهیز</div></div><div style="display:flex;gap:6px"><button class="chip" onclick="auditEditCategory('${c.id}')">✏️ ویرایش</button><button class="chip" onclick="auditDeleteCategory('${c.id}')">🗑️ حذف</button></div></div>`).join('')||'<div class="empty">هنوز دسته‌ای وجود ندارد.</div>'}
+  <div class="actions"><button class="save" onclick="auditAddCategory()">＋ افزودن دسته</button><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+}
+async function auditAddCategory(){dialog(`<h2>＋ افزودن دسته تجهیزات</h2><div class="field"><label>نام دسته</label><input id="catName" placeholder="مثلاً CNC"></div><div class="error" id="ce"></div><div class="actions"><button class="cancel" onclick="auditCategories()">انصراف</button><button class="save" onclick="saveAuditCategory()">ثبت</button></div>`)}
+async function saveAuditCategory(){const name=document.getElementById('catName').value.trim(),er=document.getElementById('ce');if(!name){er.textContent='نام دسته را وارد کنید.';return}const {error}=await sb.from('audit_categories').insert({name});if(error){er.textContent=error.message;return}await loadAudit();auditCategories()}
+async function auditEditCategory(id){const c=auditCats.find(x=>x.id===id);dialog(`<h2>✏️ ویرایش دسته</h2><div class="field"><label>نام دسته</label><input id="catName" value="${esc(c.name)}"></div><div class="error" id="ce"></div><div class="actions"><button class="cancel" onclick="auditCategories()">انصراف</button><button class="save" onclick="updateAuditCategory('${id}')">ذخیره</button></div>`)}
+async function updateAuditCategory(id){const name=document.getElementById('catName').value.trim(),er=document.getElementById('ce');if(!name){er.textContent='نام دسته را وارد کنید.';return}const {error}=await sb.from('audit_categories').update({name}).eq('id',id);if(error){er.textContent=error.message;return}await loadAudit();auditCategories()}
+async function auditDeleteCategory(id){const count=auditEquip.filter(e=>e.category_id===id).length;if(count){alert('این دسته هنوز '+fa(count)+' تجهیز دارد. ابتدا دسته تجهیزات را تغییر بده.');return}if(!confirm('این دسته حذف شود؟'))return;const {error}=await sb.from('audit_categories').update({active:false}).eq('id',id);if(error){alert(error.message);return}await loadAudit();auditCategories()}
+
+async function auditAddOperator(){
+  dialog(`<h2>＋ افزودن اپراتور</h2><div class="field"><label>نام و نام خانوادگی</label><input id="newOp"></div><div class="error" id="ae"></div><div class="actions"><button class="cancel" onclick="auditHome()">انصراف</button><button class="save" onclick="saveAuditOperator()">ثبت</button></div>`);
+}
+async function saveAuditOperator(){
+  const name=document.getElementById('newOp').value.trim(),er=document.getElementById('ae');if(!name){er.textContent='نام را وارد کنید.';return}
+  const {error}=await sb.from('audit_operators').insert({name});if(error){er.textContent=error.message;return}await loadAudit();auditOperators();
+}
+async function auditAddEquipment(){
+  if(!auditOps.length || !auditCats.length) await loadAudit();
+  dialog(`<h2>＋ افزودن تجهیز</h2><div class="field"><label>کد تجهیز</label><input id="newEqCode" placeholder="مثلاً 101"></div><div class="field"><label>نام تجهیز</label><input id="newEqName"></div><div class="field"><label>دسته تجهیز</label><select id="newEqCat">${auditCats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></div><div class="field"><label>اپراتور مسئول</label><select id="newEqOp">${auditOps.map(o=>`<option value="${o.id}">${esc(o.name)}</option>`).join('')}</select></div><div class="error" id="ae"></div><div class="actions"><button class="cancel" onclick="auditEquipment()">انصراف</button><button class="save" onclick="saveAuditEquipment()">ثبت</button></div>`);
+}
+async function saveAuditEquipment(){
+  const code=document.getElementById('newEqCode').value.trim(),name=document.getElementById('newEqName').value.trim(),category_id=document.getElementById('newEqCat').value,operator_id=document.getElementById('newEqOp').value,er=document.getElementById('ae');
+  if(!code||!category_id||!operator_id){er.textContent='کد تجهیز، دسته و اپراتور را وارد کنید.';return}
+  const {error}=await sb.from('audit_equipment').insert({code,name,category_id,operator_id});if(error){er.textContent=error.message;return}await loadAudit();auditEquipment(category_id);
+}
+async function auditEditEquipment(id){
+  const e=auditEquip.find(x=>x.id===id); if(!e)return;
+  dialog(`<h2>✏️ ویرایش تجهیز ${esc(e.code)}</h2><div class="field"><label>کد تجهیز</label><input id="newEqCode" value="${esc(e.code)}"></div><div class="field"><label>نام تجهیز</label><input id="newEqName" value="${esc(e.name||'')}"></div><div class="field"><label>دسته تجهیز</label><select id="newEqCat">${auditCats.map(c=>`<option value="${c.id}" ${c.id===e.category_id?'selected':''}>${esc(c.name)}</option>`).join('')}</select></div><div class="field"><label>اپراتور مسئول</label><select id="newEqOp">${auditOps.map(o=>`<option value="${o.id}" ${o.id===e.operator_id?'selected':''}>${esc(o.name)}</option>`).join('')}</select></div><div class="error" id="ae"></div><div class="actions"><button class="cancel" onclick="auditEquipment('${e.category_id||''}')">انصراف</button><button class="save" onclick="updateAuditEquipment('${e.id}')">ذخیره</button></div>`);
+}
+async function updateAuditEquipment(id){
+  const code=document.getElementById('newEqCode').value.trim(),name=document.getElementById('newEqName').value.trim(),category_id=document.getElementById('newEqCat').value,operator_id=document.getElementById('newEqOp').value,er=document.getElementById('ae');
+  if(!code||!category_id||!operator_id){er.textContent='کد تجهیز، دسته و اپراتور را وارد کنید.';return}
+  const {error}=await sb.from('audit_equipment').update({code,name,category_id,operator_id}).eq('id',id);if(error){er.textContent=error.message;return}await loadAudit();auditEquipment(category_id);
+}
+
+async function auditRanking(){
+  if(!auditOps.length) await loadAudit();
+  const rows=auditOps.map(o=>{const ins=auditIns.filter(x=>x.operator_id===o.id),score=auditScore(ins),nc=ins.reduce((a,x)=>a+(x.nonconformities||[]).length,0);return {o,ins,score,nc}}).sort((a,b)=>(b.score??-1)-(a.score??-1));
+  dialog(`<h2>🏆 عملکرد اپراتورها</h2><div class="hint">امتیاز بر اساس تعداد و شدت عدم انطباق‌های ثبت‌شده محاسبه می‌شود. امتیاز ۱۰۰٪ بهترین وضعیت است.</div>
+  ${rows.map((x,i)=>`<div class="person-row"><div class="person-main"><div class="person-name">${i<3?['🥇','🥈','🥉'][i]+' ':''}${esc(x.o.name)}</div><div class="person-sub">${fa(x.ins.length)} بازرسی · ${fa(x.nc)} عدم انطباق</div></div><div>${starHTML(x.score)} <b>${x.score===null?'—':fa(x.score.toFixed(0))+'٪'}</b></div></div>`).join('')||'<div class="empty">اطلاعاتی وجود ندارد.</div>'}
+  <div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+}
+async function auditHistory(){
+  if(!auditIns.length) await loadAudit();
+  const rows=auditIns.slice(0,150).map(x=>{const e=auditEquip.find(z=>z.id===x.equipment_id),o=auditOps.find(z=>z.id===x.operator_id);return `<tr><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td><td>${esc(e?.code||'—')}</td><td>${esc(o?.name||'—')}</td><td>${x.result==='ok'?'🟢':'🔴 '+esc((x.nonconformities||[]).join('، '))}</td><td>${x.photo_url?`<a href="${x.photo_url}" target="_blank">📷</a>`:'—'}</td></tr>`}).join('');
+  dialog(`<h2>📋 تاریخچه بازرسی</h2><div style="overflow:auto"><table class="table"><thead><tr><th>تاریخ</th><th>تجهیز</th><th>اپراتور</th><th>نتیجه</th><th>عکس</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">هنوز بازرسی ثبت نشده است.</td></tr>'}</tbody></table></div><div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+}
 
 function printReport(){let area=document.getElementById('printArea');if(!area){alert('ابتدا یک گزارش را انتخاب کنید.');return}let w=window.open('','_blank');if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}let styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>${window.reportType==='out'?'گزارش برداشت روغن':'گزارش ورود روغن'}</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif}#printArea{width:100%;padding:10px}#printArea *{visibility:visible!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:8px;text-align:right}.table th{background:#eee!important}.kpi{border:1px solid #999!important;padding:10px;background:#fff!important}.kpi .label,.kpi .value{color:#111!important}.print-title{font-size:22px;font-weight:bold;margin-bottom:7px}.print-meta{font-size:12px;margin-bottom:14px;color:#333}@page{size:A4 portrait;margin:12mm}</style></head><body><div id="printArea">${area.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script></body></html>`);w.document.close()}
 function dialog(h){document.getElementById('dialog').innerHTML=h;modal.classList.add('show')}function closeM(){modal.classList.remove('show')}modal.addEventListener('click',e=>{if(e.target===modal)closeM()});function tick(){let c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleString('fa-IR',{dateStyle:'full',timeStyle:'medium'})}setInterval(tick,1000);tick();
