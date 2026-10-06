@@ -18,7 +18,10 @@ main{padding:23px;overflow:hidden}.top{display:flex;justify-content:space-betwee
 <div id="root"></div>
 <div class="modal" id="modal"><div class="dialog" id="dialog"></div></div>
 <script>
-const CONFIG={url:"YOUR_SUPABASE_URL",key:"YOUR_SUPABASE_ANON_KEY"};
+const CONFIG={
+  url:"https://blnusmzbbdkwelqdawjj.supabase.co",
+  key:"sb_publishable_yQuyHvsHby0YibxTcUQD9Q_Axwxg56h"
+};
 const sb=supabase.createClient(CONFIG.url,CONFIG.key);
 const colors=['#c5d629','#5a3828','#d88b12','#f2bd20'];
 let tanks=[],ops=[],modal=document.getElementById('modal');
