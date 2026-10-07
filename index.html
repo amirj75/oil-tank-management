@@ -49,6 +49,34 @@ main{padding:23px;overflow:hidden}.top{display:flex;justify-content:space-betwee
 
 .module-cards{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:22px;max-width:1000px;margin:20px auto}.module-card{background:linear-gradient(145deg,#0b263b,#061522);border:1px solid #28516d;border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 18px 50px #0007;transition:.2s}.module-card:hover{transform:translateY(-4px);border-color:#3b87b6;box-shadow:0 24px 60px #0009}.module-card img{display:block;width:100%;height:235px;object-fit:cover;background:#eef1f2}.module-card .module-body{padding:18px 20px 22px}.module-card h2{margin:0 0 7px;font-size:22px}.module-card p{margin:0;color:#9ab2c3;font-size:12px;line-height:1.9}.brand-watermark{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(620px,72vw);max-width:620px;opacity:.085;filter:grayscale(1) brightness(1.8);pointer-events:none;z-index:1}.home-brand{position:absolute;top:18px;left:50%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:14px;opacity:.92}.home-brand img{width:150px;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px #0007)}.home-brand div{font-size:14px;color:#a9c0d0;font-weight:800;letter-spacing:.2px}.category-card{overflow:hidden;padding:0}.category-card img{display:block;width:100%;height:145px;object-fit:cover;background:#eef1f2}.category-card .cat-body{padding:12px 13px}.category-card .cat-count{margin-top:5px}
 @media(max-width:760px){.module-cards{grid-template-columns:1fr;margin:12px 0}.module-card img{height:205px}.category-card img{height:120px}.dialog{padding:13px;border-radius:15px}}
+
+/* ===== تم نهایی تیره + قرمز برای کل سامانه و فرم‌های چک‌لیست ===== */
+:root{--brand-red:#d71920;--brand-red2:#9f1117;--dark-0:#07090d;--dark-1:#0d1118;--dark-2:#121821;--dark-3:#171e28;--red-line:#652027;--text:#f3f5f7;--text-soft:#c7cdd5;--muted-dark:#9aa4b0}
+body{background:#07090d;color:var(--text)}
+.sidebar{background:linear-gradient(180deg,#11151b,#080a0e);border-left-color:#252b34}
+.nav button{color:#b8c0ca}.nav button:hover,.nav button.active{background:linear-gradient(90deg,#751118,#3b0d12);color:#fff;border-color:#a9141b}
+main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
+.module-card,.tank-card,.kpi,.panel,.quick button,.clock{background:linear-gradient(145deg,#171c24,#0d1117);border-color:#303844;color:var(--text)}
+.module-card:hover{border-color:#d71920}.module-card p,.kpi .label,.kpi .sub,.tank-cap,.percent,.empty{color:var(--muted-dark)}
+.badge{background:#2a1519;color:#ffb9bd;border:1px solid #64232a}.stats{background:#11161d;border-color:#303844}.meter{background:#2a3038}
+.quick button{color:#e6e9ed}.quick button:hover{border-color:#b5121b;background:#241217}
+.logout{border-color:#4d2429;background:#171116;color:#e5cfd1}
+/* فرم‌ها و پنجره‌های بازشونده */
+.modal{background:#030407e8}
+.dialog{background:linear-gradient(145deg,#151a21,#0b0f14)!important;border:1px solid #3a424d!important;color:#f1f3f5!important;box-shadow:0 30px 90px #000e}
+.dialog h2,.dialog h3,.dialog strong{color:#fff!important}.dialog p,.dialog .hint,.dialog small{color:#aeb7c1!important}
+.field label{color:#c7ced7!important}.field input,.field select,.field textarea{background:#0d1218!important;border:1px solid #39424d!important;color:#f3f5f7!important;caret-color:#fff}
+.field input::placeholder,.field textarea::placeholder{color:#747f8c!important}.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#d71920!important;box-shadow:0 0 0 2px #d7192026}
+.field select option{background:#0d1218;color:#f3f5f7}.actions button{border:1px solid #3a424d!important}.cancel{background:#242a33!important;color:#e5e9ed!important}.save{background:linear-gradient(135deg,#d71920,#a70f16)!important;color:#fff!important;border-color:#d71920!important}.error{color:#ff7b82!important}
+.audit-exit{background:linear-gradient(135deg,#d71920,#970f15)!important;border-color:#ef3b42!important}.audit-exit:hover{background:#ef252d!important}
+/* چک‌لیست: حذف کامل تم سفید قبلی */
+.audit-grid .audit-card,.audit-toolbar button,.equip-row,.person-row,.category-card,.nc-item{background:linear-gradient(145deg,#171c24,#0e1319)!important;border-color:#343c47!important;color:#f0f2f5!important;box-shadow:0 10px 28px #0007!important}
+.audit-card:hover,.equip-row:hover,.person-row:hover,.category-card:hover{background:linear-gradient(145deg,#20161a,#11151b)!important;border-color:#b5121b!important}
+.audit-card .small,.person-sub,.category-card .cat-count{color:#a3adb8!important}.audit-toolbar button{color:#e7eaee!important}.audit-toolbar button:hover{background:#291419!important;border-color:#b5121b!important}.audit-card .big,.person-name,.cat-name{color:#fff!important}
+.nc-item input{accent-color:#d71920}.star{color:#ff4d55}.star.off{color:#4b535e}
+/* همه فرم‌های داخل پنجره */
+.dialog button:not(.save):not(.cancel){background:#1a2028;color:#e8ebef;border-color:#3b444f}.dialog button:hover{border-color:#d71920}.dialog .chip{background:#171c23;color:#dfe4e9;border-color:#3a424d}.dialog a{color:#ff7b82}
+
 </style>
 
 <style id="audit-red-white-theme">
@@ -71,6 +99,10 @@ main{padding:23px;overflow:hidden}.top{display:flex;justify-content:space-betwee
 .dialog:has(#okChip) input,.dialog:has(#okChip) textarea,.dialog:has(#okChip) select,.dialog:has(.category-grid) input,.dialog:has(.category-grid) select{background:#fff!important;border-color:#e2bfc3!important;color:#3a2528!important}
 .dialog:has(.audit-grid) .panel{background:#fff!important;border-color:#edc4c8!important}
 .dialog:has(.audit-grid) .panel h2{color:#a80f18!important}
+</style>
+
+<style id="audit-report-theme">
+.audit-report-tools{display:flex;gap:10px;align-items:end;justify-content:space-between;margin:10px 0 14px;flex-wrap:wrap}.audit-report-tools label{display:flex;flex-direction:column;gap:5px;font-weight:700;color:#f1f3f5}.audit-report-tools select{min-width:190px;background:#171a1f;color:#f5f5f5;border:1px solid #8e1720;border-radius:9px;padding:9px;font:700 12px Vazirmatn}.audit-report-kpis{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px;margin-bottom:14px}.audit-report-kpis>div{background:#171a1f;border:1px solid #6f2028;border-radius:12px;padding:13px;text-align:center}.audit-report-kpis b{display:block;color:#fff;font-size:20px;margin-bottom:5px}.audit-report-kpis span{color:#bfc4ca;font-size:11px}.audit-report-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.audit-report-panel{background:#171a1f;border:1px solid #3a2024;border-radius:12px;padding:12px;margin-bottom:12px}.audit-report-panel h3{color:#ff5964;margin:0 0 10px;font-size:14px}.report-rank{display:grid;grid-template-columns:34px 1fr auto;gap:7px;align-items:center;background:#20242a;border:1px solid #353a42;border-radius:9px;padding:9px;margin:6px 0;color:#f4f4f4}.report-rank strong{color:#fff}.report-rank small{grid-column:2 / 4;color:#aeb4bb;font-size:10px}.report-rank>b{color:#ff7079}.audit-report-panel .table{margin-top:6px}.audit-report-panel .table th,.audit-report-panel .table td{padding:8px}@media(max-width:700px){.audit-report-kpis{grid-template-columns:repeat(2,1fr)}.audit-report-grid{grid-template-columns:1fr}.report-rank{grid-template-columns:28px 1fr auto}}
 </style>
 <style id="audit-landscape-layout">
 /* چک‌لیست در دسکتاپ به‌صورت افقی و عریض نمایش داده شود */
@@ -182,6 +214,7 @@ async function auditHome(){
   </div>
   <div class="audit-toolbar">
     <button onclick="auditOperators()">👤 اپراتورها</button>
+    <button onclick="auditReports()">📊 گزارش آماری</button>
     <button onclick="auditEquipment()">⚙️ تجهیزات</button>
     <button onclick="auditCategories()">🗂️ دسته‌بندی تجهیزات</button>
     <button onclick="auditRanking()">🏆 رتبه‌بندی و امتیاز</button>
@@ -313,6 +346,60 @@ async function updateAuditEquipment(id){
   const code=document.getElementById('newEqCode').value.trim(),name=document.getElementById('newEqName').value.trim(),category_id=document.getElementById('newEqCat').value,operator_id=document.getElementById('newEqOp').value,er=document.getElementById('ae');
   if(!code||!category_id||!operator_id){er.textContent='کد تجهیز، دسته و اپراتور را وارد کنید.';return}
   const {error}=await sb.from('audit_equipment').update({code,name,category_id,operator_id}).eq('id',id);if(error){er.textContent=error.message;return}await loadAudit();auditEquipment(category_id);
+}
+
+async function auditReports(){
+  if(!auditIns.length) await loadAudit();
+  dialog(`<h2>📊 گزارش آماری بازرسی</h2>
+    <div class="audit-report-tools">
+      <label>بازه گزارش
+        <select id="auditReportPeriod" onchange="renderAuditReport()">
+          <option value="today">امروز</option><option value="7">۷ روز اخیر</option><option value="30" selected>۳۰ روز اخیر</option><option value="90">۳ ماه اخیر</option><option value="180">۶ ماه اخیر</option><option value="365">۱ سال اخیر</option><option value="all">همه سوابق</option>
+        </select>
+      </label>
+      <button class="save" onclick="printAuditReport()">🖨️ چاپ گزارش</button>
+    </div>
+    <div id="auditReportArea"></div>
+    <div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+  renderAuditReport();
+}
+function auditReportRows(){
+  const sel=document.getElementById('auditReportPeriod'), period=sel?sel.value:'30';
+  const now=Date.now();
+  let from=0;
+  if(period!=='all') from=now-(Number(period)*86400000);
+  return auditIns.filter(x=>from===0||new Date(x.created_at).getTime()>=from);
+}
+function renderAuditReport(){
+  const area=document.getElementById('auditReportArea'); if(!area)return;
+  const rows=auditReportRows();
+  const totalIns=rows.length, ncRows=rows.reduce((a,x)=>a+(x.nonconformities||[]).length,0), badIns=rows.filter(x=>x.result==='nc').length, okIns=rows.filter(x=>x.result==='ok').length;
+  const compliance=totalIns?Math.round(okIns/totalIns*100):0;
+  const ops=auditOps.map(o=>{const ins=rows.filter(x=>x.operator_id===o.id),nc=ins.reduce((a,x)=>a+(x.nonconformities||[]).length,0),score=auditScore(ins);return {name:o.name,ins,nc,score}}).filter(x=>x.ins.length).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.nc-b.nc);
+  const ncMap={}; rows.forEach(x=>(x.nonconformities||[]).forEach(n=>ncMap[n.type]=(ncMap[n.type]||0)+1));
+  const ncs=Object.entries(ncMap).sort((a,b)=>b[1]-a[1]);
+  const top=ops[0];
+  area.innerHTML=`<div id="auditPrintArea">
+    <div class="audit-report-head"><div><div class="audit-report-title">گزارش آماری بازرسی تجهیزات</div><div class="audit-report-meta">بازه: ${esc(document.getElementById('auditReportPeriod')?.selectedOptions?.[0]?.text||'—')} · تهیه گزارش: ${new Date().toLocaleString('fa-IR')}</div></div></div>
+    <div class="audit-report-kpis">
+      <div><b>${fa(totalIns)}</b><span>تعداد بازرسی</span></div>
+      <div><b>${fa(ncRows)}</b><span>تعداد عدم انطباق</span></div>
+      <div><b>${fa(badIns)}</b><span>بازرسی دارای عدم انطباق</span></div>
+      <div><b>${fa(compliance)}٪</b><span>درصد بازرسی بدون مشکل</span></div>
+      <div><b>${top?esc(top.name):'—'}</b><span>بهترین اپراتور</span></div>
+    </div>
+    <div class="audit-report-grid">
+      <section class="audit-report-panel"><h3>🏆 بهترین اپراتورها به ترتیب</h3>${ops.map((x,i)=>`<div class="report-rank"><span>${i<3?['🥇','🥈','🥉'][i]:fa(i+1)}</span><strong>${esc(x.name)}</strong><span>${starHTML(x.score)} ${x.score===null?'—':fa(x.score.toFixed(0))+'٪'}</span><small>${fa(x.ins.length)} بازرسی · ${fa(x.nc)} عدم انطباق</small></div>`).join('')||'<div class="empty">در این بازه اطلاعاتی وجود ندارد.</div>'}</section>
+      <section class="audit-report-panel"><h3>🔴 بیشترین عنوان عدم انطباق</h3>${ncs.map((x,i)=>`<div class="report-rank"><span>${fa(i+1)}</span><strong>${esc(x[0])}</strong><b>${fa(x[1])} مورد</b></div>`).join('')||'<div class="empty">عدم انطباقی ثبت نشده است.</div>'}</section>
+    </div>
+    <section class="audit-report-panel"><h3>📈 آمار کلی عدم انطباق‌ها</h3><table class="table"><thead><tr><th>عنوان عدم انطباق</th><th>تعداد</th><th>درصد از کل</th></tr></thead><tbody>${ncs.map(x=>`<tr><td>${esc(x[0])}</td><td>${fa(x[1])}</td><td>${fa(ncRows?Math.round(x[1]/ncRows*100):0)}٪</td></tr>`).join('')||'<tr><td colspan="3">موردی ثبت نشده است.</td></tr>'}</tbody></table></section>
+  </div>`;
+}
+function printAuditReport(){
+  const area=document.getElementById('auditPrintArea'); if(!area){alert('ابتدا گزارش را باز کنید.');return}
+  const w=window.open('','_blank'); if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}
+  const styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');
+  w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>گزارش آماری بازرسی تجهیزات</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif;padding:0;margin:0}.audit-report-title{color:#111!important}.audit-report-meta{color:#555!important}.audit-report-kpis>div,.audit-report-panel,.report-rank{background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important}.audit-report-kpis b,.report-rank strong,.audit-report-panel h3{color:#111!important}.audit-report-kpis span,.report-rank small{color:#555!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:7px}.table th{background:#eee!important}@page{size:A4 portrait;margin:12mm}</style></head><body>${area.outerHTML}<script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script></body></html>`); w.document.close();
 }
 
 async function auditCheckedToday(){
