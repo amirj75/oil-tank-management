@@ -181,7 +181,12 @@ main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
 .modal:has(.audit-grid) .dialog .cancel{background:#171c23!important;color:#ff737b!important;border-color:#7f222a!important}
 .modal:has(.audit-grid) .dialog .save{background:#c41420!important;color:#fff!important}
 .modal:has(.audit-grid) .dialog .audit-tool-menu{background:#11151b!important;border-color:#7f222a!important}
-@media(max-width:760px){.modal:has(.audit-grid) .dialog{padding:14px!important}}
+@media(max-width:760px){.modal:has(.audit-grid) .dialog{padding:14px!important}
+/* Mobile audit forms: make the dialog vertically scrollable so the submit button remains reachable after adding a photo. */
+.modal.show .dialog{max-height:calc(100vh - 28px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;box-sizing:border-box}
+.modal.show .dialog .actions{position:sticky;bottom:0;z-index:5;background:inherit;padding-top:10px;padding-bottom:2px}
+@media(max-width:760px){.modal.show .dialog{max-height:calc(100dvh - 18px);overflow-y:auto;padding-bottom:12px!important}.modal.show .dialog .photo-preview{max-height:180px}.modal.show .dialog .actions{position:sticky;bottom:0;margin-top:12px;padding:10px 0 2px;background:linear-gradient(to bottom,transparent,var(--panel) 18%);}}
+}
 </style>
 </head>
 <body>
@@ -564,7 +569,12 @@ function printReport(){let area=document.getElementById('printArea');if(!area){a
 .modal:has(.audit-grid) .dialog .cancel{background:#171c23!important;color:#ff737b!important;border-color:#7f222a!important}
 .modal:has(.audit-grid) .dialog .save{background:#c41420!important;color:#fff!important}
 .modal:has(.audit-grid) .dialog .audit-tool-menu{background:#11151b!important;border-color:#7f222a!important}
-@media(max-width:760px){.modal:has(.audit-grid) .dialog{padding:14px!important}}
+@media(max-width:760px){.modal:has(.audit-grid) .dialog{padding:14px!important}
+/* Mobile audit forms: make the dialog vertically scrollable so the submit button remains reachable after adding a photo. */
+.modal.show .dialog{max-height:calc(100vh - 28px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;box-sizing:border-box}
+.modal.show .dialog .actions{position:sticky;bottom:0;z-index:5;background:inherit;padding-top:10px;padding-bottom:2px}
+@media(max-width:760px){.modal.show .dialog{max-height:calc(100dvh - 18px);overflow-y:auto;padding-bottom:12px!important}.modal.show .dialog .photo-preview{max-height:180px}.modal.show .dialog .actions{position:sticky;bottom:0;margin-top:12px;padding:10px 0 2px;background:linear-gradient(to bottom,transparent,var(--panel) 18%);}}
+}
 </style>
 </head><body><div id="printArea">${area.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script>`);w.document.close()}
 function exitAudit(){auditMode=false;closeM();showHome()}function dialog(h){const d=document.getElementById('dialog');d.innerHTML=h;if(auditMode){const ex=document.createElement('button');ex.type='button';ex.className='audit-exit';ex.textContent='✕ خروج از چک‌لیست';ex.onclick=exitAudit;d.prepend(ex)}modal.classList.add('show')}function closeM(){modal.classList.remove('show')}modal.addEventListener('click',e=>{if(e.target===modal)e.stopPropagation()});function tick(){let c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleString('fa-IR',{dateStyle:'full',timeStyle:'medium'})}setInterval(tick,1000);tick();
