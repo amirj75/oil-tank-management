@@ -135,6 +135,31 @@ main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
 }
 </style>
 
+<style id="audit-final-dark-theme">
+/* تم نهایی تیره و قرمز برای صفحه اصلی چک‌لیست و تمام فرم‌ها */
+.dialog:has(.audit-grid),.dialog:has(#okChip),.dialog:has(.category-grid){background:linear-gradient(145deg,#10151c,#090d12)!important;border:1px solid #343c47!important;color:#f3f5f7!important;box-shadow:0 30px 90px #000d!important}
+.dialog:has(.audit-grid) h2,.dialog:has(#okChip) h2,.dialog:has(.category-grid) h2{color:#fff!important}
+.dialog:has(.audit-grid) .hint,.dialog:has(#okChip) .hint,.dialog:has(.category-grid) .hint{color:#aeb6c0!important}
+.dialog:has(.audit-grid) .panel,.dialog:has(#okChip) .panel,.dialog:has(.category-grid) .panel{background:linear-gradient(145deg,#171c24,#0e1319)!important;border-color:#343c47!important;color:#f3f5f7!important}
+.dialog:has(.audit-grid) .audit-card,.dialog:has(.audit-grid) .equip-row,.dialog:has(.audit-grid) .person-row,.dialog:has(.audit-grid) .category-card,.dialog:has(#okChip) .nc-item,.dialog:has(#okChip) .photo-box,.dialog:has(.category-grid) .category-card{background:linear-gradient(145deg,#171c24,#0e1319)!important;border-color:#343c47!important;color:#f0f2f5!important;box-shadow:0 10px 28px #0007!important}
+.dialog:has(.audit-grid) .audit-card:hover,.dialog:has(.audit-grid) .equip-row:hover,.dialog:has(.audit-grid) .person-row:hover,.dialog:has(.audit-grid) .category-card:hover{background:linear-gradient(145deg,#24161a,#11151b)!important;border-color:#b5121b!important}
+.dialog:has(.audit-grid) .audit-card .big,.dialog:has(.audit-grid) .audit-card .small,.dialog:has(.audit-grid) .person-name,.dialog:has(.audit-grid) .cat-name{color:#fff!important}
+.dialog:has(.audit-grid) .audit-card .small,.dialog:has(.audit-grid) .person-sub,.dialog:has(.audit-grid) .cat-count{color:#aeb6c0!important}
+.dialog:has(.audit-grid) .field label,.dialog:has(#okChip) .field label,.dialog:has(.category-grid) .field label{color:#c9cfd6!important}
+.dialog:has(.audit-grid) input,.dialog:has(.audit-grid) select,.dialog:has(#okChip) input,.dialog:has(#okChip) select,.dialog:has(.category-grid) input,.dialog:has(.category-grid) select{background:#0b1016!important;border-color:#414b57!important;color:#f5f6f7!important}
+.dialog:has(.audit-grid) .cancel,.dialog:has(#okChip) .cancel,.dialog:has(.category-grid) .cancel{background:#242a32!important;color:#f0f2f5!important;border-color:#414b57!important}
+.audit-tool-tab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:45;background:linear-gradient(180deg,#d71920,#8f0e15);color:#fff;border:1px solid #ef3b42;border-right:0;border-radius:10px 0 0 10px;padding:12px 8px;font:800 11px Vazirmatn;cursor:pointer;box-shadow:0 8px 28px #0009}
+.audit-tool-tab:hover{background:#ef252d}
+.audit-tool-menu{position:fixed;right:-285px;top:0;height:100%;width:270px;z-index:44;background:linear-gradient(180deg,#121820,#090d12);border-left:1px solid #3b2529;box-shadow:-18px 0 45px #000b;padding:18px 14px;transition:right .22s ease;overflow:auto}
+.audit-tool-menu.open{right:0}
+.audit-tool-title{color:#fff;font-weight:800;font-size:14px;padding:4px 4px 14px;border-bottom:1px solid #303740;margin-bottom:10px}
+.audit-tool-menu button{width:100%;display:block;text-align:right;margin:7px 0;padding:11px 12px;border:1px solid #343c47;border-radius:10px;background:#171c24;color:#e9edf1;font:700 11px Vazirmatn;cursor:pointer}
+.audit-tool-menu button:hover{background:#291419;border-color:#b5121b;color:#fff}
+.audit-printing #root,.audit-printing .modal,.audit-printing .audit-tool-tab,.audit-printing .audit-tool-menu{visibility:hidden!important}
+.audit-printing #auditPrintArea,.audit-printing #auditPrintArea *{visibility:visible!important}
+.audit-printing #auditPrintArea{position:absolute!important;left:0!important;top:0!important;width:100%!important;background:#fff!important;color:#111!important;padding:0!important}
+@media print{body{background:#fff!important}.audit-printing #auditPrintArea{position:absolute!important;width:100%!important}.audit-printing .audit-report-panel,.audit-printing .audit-report-kpis>div,.audit-printing .report-rank{background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important}.audit-printing .audit-report-title,.audit-printing .audit-report-panel h3,.audit-printing .audit-report-kpis b,.audit-printing .report-rank strong{color:#111!important}.audit-printing .audit-report-kpis span,.audit-printing .report-rank small,.audit-printing .audit-report-meta{color:#555!important}.audit-printing .table{width:100%;border-collapse:collapse}.audit-printing .table th,.audit-printing .table td{border:1px solid #aaa!important;padding:7px}.audit-printing .table th{background:#eee!important}}
+</style>
 </head>
 <body>
 <div id="root"></div>
@@ -212,21 +237,25 @@ async function auditHome(){
     <div class="audit-card" onclick="auditCheckedToday()"><div class="big">${fa(checkedToday)}</div><div class="small">تجهیزات بازرسی‌شده امروز</div></div>
     <div class="audit-card" onclick="auditNCList()"><div class="big">${fa(ncCount)}</div><div class="small">عدم انطباق‌های ثبت‌شده</div></div>
   </div>
-  <div class="audit-toolbar">
-    <button onclick="auditOperators()">👤 اپراتورها</button>
-    <button onclick="auditReports()">📊 گزارش آماری</button>
-    <button onclick="auditEquipment()">⚙️ تجهیزات</button>
-    <button onclick="auditCategories()">🗂️ دسته‌بندی تجهیزات</button>
-    <button onclick="auditRanking()">🏆 رتبه‌بندی و امتیاز</button>
-    <button onclick="auditHistory()">📋 تاریخچه بازرسی</button>
-    <button onclick="auditAddOperator()">＋ اپراتور</button>
-    <button onclick="auditAddEquipment()">＋ تجهیز</button>
+  <button class="audit-tool-tab" type="button" onclick="toggleAuditTools()">☰ ابزار</button>
+  <div id="auditToolMenu" class="audit-tool-menu">
+    <div class="audit-tool-title">ابزارهای چک‌لیست</div>
+    <button onclick="auditOperators();closeAuditTools()">👤 اپراتورها</button>
+    <button onclick="auditReports();closeAuditTools()">📊 گزارش آماری</button>
+    <button onclick="auditEquipment();closeAuditTools()">⚙️ تجهیزات</button>
+    <button onclick="auditCategories();closeAuditTools()">🗂️ دسته‌بندی تجهیزات</button>
+    <button onclick="auditRanking();closeAuditTools()">🏆 رتبه‌بندی و امتیاز</button>
+    <button onclick="auditHistory();closeAuditTools()">📋 تاریخچه بازرسی</button>
+    <button onclick="auditAddOperator();closeAuditTools()">＋ اپراتور</button>
+    <button onclick="auditAddEquipment();closeAuditTools()">＋ تجهیز</button>
   </div>
   <div class="panel" style="padding:12px"><h2>🗂️ دسته‌بندی تجهیزات</h2><div class="hint">دسته‌ها را خودت از داخل اپ اضافه، ویرایش یا غیرفعال کن.</div><div class="category-grid">${auditCats.map(c=>`<div class="category-card" onclick="auditEquipment('${c.id}')">${AUDIT_CARD_IMAGES[c.name]?`<img src="${AUDIT_CARD_IMAGES[c.name]}" alt="${esc(c.name)}">`:''}<div class="cat-body"><div class="cat-name">${esc(c.name)}</div><div class="cat-count">${fa(auditEquip.filter(e=>e.category_id===c.id).length)}</div><div class="person-sub">تجهیز</div></div></div>`).join('')||'<div class="empty">هنوز دسته‌ای ثبت نشده است.</div>'}</div><div class="actions"><button class="save" onclick="auditCategories()">⚙️ مدیریت دسته‌ها</button></div>
   <div class="panel" style="padding:12px"><h2>🏆 برترین اپراتورها</h2>
   ${scored.slice(0,5).map(x=>`<div class="person-row"><div class="person-main"><div class="person-name">${esc(x.o.name)}</div><div class="person-sub">${fa(x.ins.length)} بازرسی</div></div><div>${starHTML(x.score)} <b>${fa(x.score.toFixed(0))}٪</b></div></div>`).join('')||'<div class="empty">هنوز بازرسی ثبت نشده است.</div>'}</div>
   <div class="actions"><button class="cancel" onclick="closeM()">بستن</button></div>`);
 }
+function toggleAuditTools(){const m=document.getElementById('auditToolMenu');if(m)m.classList.toggle('open')}
+function closeAuditTools(){const m=document.getElementById('auditToolMenu');if(m)m.classList.remove('open')}
 async function auditOperators(){
   if(!auditOps.length) await loadAudit();
   dialog(`<h2>👤 اپراتورها</h2><div class="hint">با انتخاب اپراتور، تجهیزات تحت مسئولیت او نمایش داده می‌شود.</div>
@@ -396,10 +425,13 @@ function renderAuditReport(){
   </div>`;
 }
 function printAuditReport(){
-  const area=document.getElementById('auditPrintArea'); if(!area){alert('ابتدا گزارش را باز کنید.');return}
-  const w=window.open('','_blank'); if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}
-  const styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');
-  w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>گزارش آماری بازرسی تجهیزات</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif;padding:0;margin:0}.audit-report-title{color:#111!important}.audit-report-meta{color:#555!important}.audit-report-kpis>div,.audit-report-panel,.report-rank{background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important}.audit-report-kpis b,.report-rank strong,.audit-report-panel h3{color:#111!important}.audit-report-kpis span,.report-rank small{color:#555!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:7px}.table th{background:#eee!important}@page{size:A4 portrait;margin:12mm}</style></head><body>${area.outerHTML}<script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script></body></html>`); w.document.close();
+  const area=document.getElementById('auditPrintArea');
+  if(!area){alert('ابتدا گزارش را باز کنید.');return}
+  closeAuditTools();
+  document.body.classList.add('audit-printing');
+  const done=()=>{document.body.classList.remove('audit-printing');window.removeEventListener('afterprint',done)};
+  window.addEventListener('afterprint',done);
+  setTimeout(()=>window.print(),120);
 }
 
 async function auditCheckedToday(){
