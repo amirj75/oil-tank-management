@@ -49,6 +49,59 @@ main{padding:23px;overflow:hidden}.top{display:flex;justify-content:space-betwee
 .module-cards{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:22px;max-width:1000px;margin:20px auto}.module-card{background:linear-gradient(145deg,#0b263b,#061522);border:1px solid #28516d;border-radius:22px;overflow:hidden;cursor:pointer;box-shadow:0 18px 50px #0007;transition:.2s}.module-card:hover{transform:translateY(-4px);border-color:#3b87b6;box-shadow:0 24px 60px #0009}.module-card img{display:block;width:100%;height:235px;object-fit:cover;background:#eef1f2}.module-card .module-body{padding:18px 20px 22px}.module-card h2{margin:0 0 7px;font-size:22px}.module-card p{margin:0;color:#9ab2c3;font-size:12px;line-height:1.9}.brand-watermark{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(620px,72vw);max-width:620px;opacity:.085;filter:grayscale(1) brightness(1.8);pointer-events:none;z-index:1}.home-brand{position:absolute;top:18px;left:50%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:14px;opacity:.92}.home-brand img{width:150px;height:auto;object-fit:contain;filter:drop-shadow(0 8px 20px #0007)}.home-brand div{font-size:14px;color:#a9c0d0;font-weight:800;letter-spacing:.2px}.category-card{overflow:hidden;padding:0}.category-card img{display:block;width:100%;height:145px;object-fit:cover;background:#eef1f2}.category-card .cat-body{padding:12px 13px}.category-card .cat-count{margin-top:5px}
 @media(max-width:760px){.module-cards{grid-template-columns:1fr;margin:12px 0}.module-card img{height:205px}.category-card img{height:120px}.dialog{padding:13px;border-radius:15px}}
 </style>
+
+<style id="audit-red-white-theme">
+/* تم اختصاصی بخش چک‌لیست: سفید و قرمز مطابق لوگوی OSVEH */
+.modal:has(.audit-grid),.modal:has(#okChip),.modal:has(.category-grid){background:rgba(255,255,255,.94)!important;backdrop-filter:blur(10px)}
+.dialog:has(.audit-grid),.dialog:has(#okChip),.dialog:has(.category-grid){background:#fff!important;border:1px solid #f0c5c9!important;color:#2b2022!important;box-shadow:0 25px 70px rgba(170,20,30,.16)!important}
+.dialog:has(.audit-grid) h2,.dialog:has(#okChip) h2,.dialog:has(.category-grid) h2{color:#b5121b!important}
+.dialog:has(.audit-grid) .hint,.dialog:has(#okChip) .hint,.dialog:has(.category-grid) .hint{color:#765c60!important}
+.dialog:has(.audit-grid) .audit-card,.dialog:has(.audit-grid) .audit-toolbar button,.dialog:has(.audit-grid) .equip-row,.dialog:has(.audit-grid) .person-row,.dialog:has(.audit-grid) .category-card,.dialog:has(#okChip) .nc-item,.dialog:has(#okChip) .photo-box,.dialog:has(.category-grid) .category-card{background:#fff!important;border-color:#edc4c8!important;color:#3a2528!important;box-shadow:0 7px 20px rgba(170,20,30,.07)!important}
+.dialog:has(.audit-grid) .audit-card:hover,.dialog:has(.audit-grid) .equip-row:hover,.dialog:has(.audit-grid) .person-row:hover,.dialog:has(.audit-grid) .category-card:hover{background:#fff7f7!important;border-color:#d83a45!important}
+.dialog:has(.audit-grid) .audit-card .big,.dialog:has(.audit-grid) .audit-card .small,.dialog:has(.audit-grid) .person-name,.dialog:has(.audit-grid) .cat-name,.dialog:has(.audit-grid) .person-sub,.dialog:has(.audit-grid) .cat-count{color:#8f1820!important}
+.dialog:has(.audit-grid) .audit-toolbar button{color:#a80f18!important;border-color:#dfb1b6!important}
+.dialog:has(.audit-grid) .audit-toolbar button:hover{background:#fff0f1!important;border-color:#c91f2a!important}
+.dialog:has(#okChip) .chip,.dialog:has(#okChip) .category-tools button{background:#fff!important;border-color:#e0b8bc!important;color:#a80f18!important}
+.dialog:has(#okChip) .chip.selected{background:#b5121b!important;border-color:#b5121b!important;color:#fff!important}
+.dialog:has(#okChip) .nc-item input{accent-color:#c41420!important}
+.dialog:has(#okChip) .photo-box{border-color:#df9da4!important;color:#8f1820!important}
+.dialog:has(#okChip) .save,.dialog:has(.audit-grid) .save,.dialog:has(.category-grid) .save{background:#c41420!important;color:#fff!important}
+.dialog:has(#okChip) .cancel,.dialog:has(.audit-grid) .cancel,.dialog:has(.category-grid) .cancel{background:#fff!important;color:#a80f18!important;border-color:#e1b5b9!important}
+.dialog:has(#okChip) input,.dialog:has(#okChip) textarea,.dialog:has(#okChip) select,.dialog:has(.category-grid) input,.dialog:has(.category-grid) select{background:#fff!important;border-color:#e2bfc3!important;color:#3a2528!important}
+.dialog:has(.audit-grid) .panel{background:#fff!important;border-color:#edc4c8!important}
+.dialog:has(.audit-grid) .panel h2{color:#a80f18!important}
+</style>
+<style id="audit-landscape-layout">
+/* چک‌لیست در دسکتاپ به‌صورت افقی و عریض نمایش داده شود */
+@media (min-width: 901px){
+  .modal:has(.audit-grid),
+  .modal:has(.category-grid),
+  .modal:has(#okChip){
+    align-items:center!important;
+    padding:18px!important;
+  }
+  .dialog:has(.audit-grid),
+  .dialog:has(.category-grid),
+  .dialog:has(#okChip){
+    width:min(1280px,96vw)!important;
+    max-width:1280px!important;
+    max-height:92vh!important;
+    overflow-y:auto!important;
+  }
+  .dialog:has(.audit-grid) .audit-grid{
+    grid-template-columns:repeat(4,minmax(170px,1fr))!important;
+  }
+  .dialog:has(.audit-grid) .category-grid{
+    grid-template-columns:repeat(4,minmax(190px,1fr))!important;
+  }
+}
+@media (min-width:1200px){
+  .dialog:has(.audit-grid) .category-grid{
+    grid-template-columns:repeat(6,minmax(150px,1fr))!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="root"></div>
@@ -286,7 +339,60 @@ async function auditHistory(){
   dialog(`<h2>📋 تاریخچه بازرسی</h2><div class="hint">برای اصلاح اشتباه، روی × کنار هر عدم انطباق بزنید؛ خودِ بازرسی حذف نمی‌شود.</div><div style="overflow:auto"><table class="table"><thead><tr><th>تاریخ</th><th>تجهیز</th><th>اپراتور</th><th>نتیجه / عدم انطباق</th><th>عکس</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">هنوز بازرسی ثبت نشده است.</td></tr>'}</tbody></table></div><div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
 }
 
-function printReport(){let area=document.getElementById('printArea');if(!area){alert('ابتدا یک گزارش را انتخاب کنید.');return}let w=window.open('','_blank');if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}let styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>${window.reportType==='out'?'گزارش برداشت روغن':'گزارش ورود روغن'}</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif}#printArea{width:100%;padding:10px}#printArea *{visibility:visible!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:8px;text-align:right}.table th{background:#eee!important}.kpi{border:1px solid #999!important;padding:10px;background:#fff!important}.kpi .label,.kpi .value{color:#111!important}.print-title{font-size:22px;font-weight:bold;margin-bottom:7px}.print-meta{font-size:12px;margin-bottom:14px;color:#333}@page{size:A4 portrait;margin:12mm}</style></head><body><div id="printArea">${area.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script></body></html>`);w.document.close()}
+function printReport(){let area=document.getElementById('printArea');if(!area){alert('ابتدا یک گزارش را انتخاب کنید.');return}let w=window.open('','_blank');if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}let styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>${window.reportType==='out'?'گزارش برداشت روغن':'گزارش ورود روغن'}</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif}#printArea{width:100%;padding:10px}#printArea *{visibility:visible!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:8px;text-align:right}.table th{background:#eee!important}.kpi{border:1px solid #999!important;padding:10px;background:#fff!important}.kpi .label,.kpi .value{color:#111!important}.print-title{font-size:22px;font-weight:bold;margin-bottom:7px}.print-meta{font-size:12px;margin-bottom:14px;color:#333}@page{size:A4 portrait;margin:12mm}</style>
+<style id="audit-red-white-theme">
+/* تم اختصاصی بخش چک‌لیست: سفید و قرمز مطابق لوگوی OSVEH */
+.modal:has(.audit-grid),.modal:has(#okChip),.modal:has(.category-grid){background:rgba(255,255,255,.94)!important;backdrop-filter:blur(10px)}
+.dialog:has(.audit-grid),.dialog:has(#okChip),.dialog:has(.category-grid){background:#fff!important;border:1px solid #f0c5c9!important;color:#2b2022!important;box-shadow:0 25px 70px rgba(170,20,30,.16)!important}
+.dialog:has(.audit-grid) h2,.dialog:has(#okChip) h2,.dialog:has(.category-grid) h2{color:#b5121b!important}
+.dialog:has(.audit-grid) .hint,.dialog:has(#okChip) .hint,.dialog:has(.category-grid) .hint{color:#765c60!important}
+.dialog:has(.audit-grid) .audit-card,.dialog:has(.audit-grid) .audit-toolbar button,.dialog:has(.audit-grid) .equip-row,.dialog:has(.audit-grid) .person-row,.dialog:has(.audit-grid) .category-card,.dialog:has(#okChip) .nc-item,.dialog:has(#okChip) .photo-box,.dialog:has(.category-grid) .category-card{background:#fff!important;border-color:#edc4c8!important;color:#3a2528!important;box-shadow:0 7px 20px rgba(170,20,30,.07)!important}
+.dialog:has(.audit-grid) .audit-card:hover,.dialog:has(.audit-grid) .equip-row:hover,.dialog:has(.audit-grid) .person-row:hover,.dialog:has(.audit-grid) .category-card:hover{background:#fff7f7!important;border-color:#d83a45!important}
+.dialog:has(.audit-grid) .audit-card .big,.dialog:has(.audit-grid) .audit-card .small,.dialog:has(.audit-grid) .person-name,.dialog:has(.audit-grid) .cat-name,.dialog:has(.audit-grid) .person-sub,.dialog:has(.audit-grid) .cat-count{color:#8f1820!important}
+.dialog:has(.audit-grid) .audit-toolbar button{color:#a80f18!important;border-color:#dfb1b6!important}
+.dialog:has(.audit-grid) .audit-toolbar button:hover{background:#fff0f1!important;border-color:#c91f2a!important}
+.dialog:has(#okChip) .chip,.dialog:has(#okChip) .category-tools button{background:#fff!important;border-color:#e0b8bc!important;color:#a80f18!important}
+.dialog:has(#okChip) .chip.selected{background:#b5121b!important;border-color:#b5121b!important;color:#fff!important}
+.dialog:has(#okChip) .nc-item input{accent-color:#c41420!important}
+.dialog:has(#okChip) .photo-box{border-color:#df9da4!important;color:#8f1820!important}
+.dialog:has(#okChip) .save,.dialog:has(.audit-grid) .save,.dialog:has(.category-grid) .save{background:#c41420!important;color:#fff!important}
+.dialog:has(#okChip) .cancel,.dialog:has(.audit-grid) .cancel,.dialog:has(.category-grid) .cancel{background:#fff!important;color:#a80f18!important;border-color:#e1b5b9!important}
+.dialog:has(#okChip) input,.dialog:has(#okChip) textarea,.dialog:has(#okChip) select,.dialog:has(.category-grid) input,.dialog:has(.category-grid) select{background:#fff!important;border-color:#e2bfc3!important;color:#3a2528!important}
+.dialog:has(.audit-grid) .panel{background:#fff!important;border-color:#edc4c8!important}
+.dialog:has(.audit-grid) .panel h2{color:#a80f18!important}
+</style>
+<style id="audit-landscape-layout">
+/* چک‌لیست در دسکتاپ به‌صورت افقی و عریض نمایش داده شود */
+@media (min-width: 901px){
+  .modal:has(.audit-grid),
+  .modal:has(.category-grid),
+  .modal:has(#okChip){
+    align-items:center!important;
+    padding:18px!important;
+  }
+  .dialog:has(.audit-grid),
+  .dialog:has(.category-grid),
+  .dialog:has(#okChip){
+    width:min(1280px,96vw)!important;
+    max-width:1280px!important;
+    max-height:92vh!important;
+    overflow-y:auto!important;
+  }
+  .dialog:has(.audit-grid) .audit-grid{
+    grid-template-columns:repeat(4,minmax(170px,1fr))!important;
+  }
+  .dialog:has(.audit-grid) .category-grid{
+    grid-template-columns:repeat(4,minmax(190px,1fr))!important;
+  }
+}
+@media (min-width:1200px){
+  .dialog:has(.audit-grid) .category-grid{
+    grid-template-columns:repeat(6,minmax(150px,1fr))!important;
+  }
+}
+</style>
+
+</head><body><div id="printArea">${area.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script>`);w.document.close()}
 function dialog(h){document.getElementById('dialog').innerHTML=h;modal.classList.add('show')}function closeM(){modal.classList.remove('show')}modal.addEventListener('click',e=>{if(e.target===modal)closeM()});function tick(){let c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleString('fa-IR',{dateStyle:'full',timeStyle:'medium'})}setInterval(tick,1000);tick();
 async function boot(){const {data:{session}}=await sb.auth.getSession();if(!session){document.getElementById('root').innerHTML=`<div class="login"><div class="loginbox"><h1>سامانه مدیریت و نگهداری و تعمیرات</h1><p>برای ورود، ایمیل و رمز عبور کاربر سامانه را وارد کنید.</p><div class="field"><label>ایمیل</label><input id="em" type="email"></div><div class="field"><label>رمز عبور</label><input id="pw" type="password"></div><div class="error" id="le"></div><button class="save" style="width:100%;padding:11px;border:0;border-radius:10px;font:700 12px Vazirmatn;cursor:pointer" onclick="login()">ورود به سامانه</button></div></div>`}else load()}
 async function login(){let e=document.getElementById('em').value,p=document.getElementById('pw').value,r=await sb.auth.signInWithPassword({email:e,password:p});if(r.error)document.getElementById('le').textContent='ایمیل یا رمز عبور صحیح نیست.';else load()}
