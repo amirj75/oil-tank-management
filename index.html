@@ -223,80 +223,6 @@ main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
 @keyframes sirenBlink{from{opacity:.35;box-shadow:0 0 2px #ff2033}to{opacity:1;box-shadow:0 0 14px #ff2033}}
 </style>
 
-<style id="audit-ui-3d-same-photos">
-/* سه‌بعدی کردن همان عکس‌های اصلی؛ بدون تعویض یا بازسازی تصویر */
-.audit-modern .category-card{
-  position:relative!important;
-  perspective:1000px!important;
-  transform-style:preserve-3d!important;
-  transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, border-color .28s ease!important;
-  box-shadow:0 10px 24px rgba(0,0,0,.42), 0 2px 5px rgba(0,0,0,.28)!important;
-}
-.audit-modern .category-card .cat-image-wrap{
-  position:relative!important;
-  transform-style:preserve-3d!important;
-  perspective:900px!important;
-  overflow:hidden!important;
-  isolation:isolate!important;
-  background:#061522!important;
-}
-.audit-modern .category-card .cat-image-wrap::before{
-  content:"";
-  position:absolute!important;
-  inset:8px!important;
-  border-radius:10px!important;
-  background:linear-gradient(135deg,rgba(255,255,255,.13),transparent 28%,transparent 70%,rgba(0,0,0,.28))!important;
-  pointer-events:none!important;
-  z-index:2!important;
-  mix-blend-mode:screen!important;
-}
-.audit-modern .category-card .cat-image-wrap::after{
-  content:"";
-  position:absolute!important;
-  left:10%!important;
-  right:10%!important;
-  bottom:3px!important;
-  height:15px!important;
-  border-radius:50%!important;
-  background:rgba(0,0,0,.55)!important;
-  filter:blur(9px)!important;
-  transform:translateZ(-8px) scaleX(.9)!important;
-  z-index:0!important;
-  pointer-events:none!important;
-}
-.audit-modern .category-card img{
-  position:relative!important;
-  z-index:1!important;
-  transform:perspective(900px) rotateX(1.2deg) rotateY(-1.8deg) translateZ(8px) scale(1.015)!important;
-  transform-origin:center center!important;
-  filter:drop-shadow(0 13px 10px rgba(0,0,0,.42)) drop-shadow(0 3px 3px rgba(0,0,0,.35)) contrast(1.025) saturate(1.03)!important;
-  transition:transform .3s cubic-bezier(.2,.8,.2,1), filter .3s ease!important;
-  will-change:transform,filter!important;
-}
-.audit-modern .category-card:hover{
-  transform:translateY(-5px) rotateX(.35deg) rotateY(-.55deg) scale(1.012)!important;
-  border-color:#42b9ff!important;
-  box-shadow:0 20px 38px rgba(0,0,0,.58), 0 7px 15px rgba(0,120,190,.16)!important;
-}
-.audit-modern .category-card:hover img{
-  transform:perspective(900px) rotateX(1.4deg) rotateY(-2.4deg) translate3d(0,-5px,20px) scale(1.035)!important;
-  filter:drop-shadow(0 20px 13px rgba(0,0,0,.48)) drop-shadow(0 5px 4px rgba(0,0,0,.32)) contrast(1.035) saturate(1.04)!important;
-}
-.audit-modern .category-card .cat-body{
-  position:relative!important;
-  z-index:3!important;
-  transform:translateZ(12px)!important;
-  box-shadow:0 -8px 18px rgba(0,0,0,.16)!important;
-}
-@media(max-width:700px){
-  .audit-modern .category-card img{transform:perspective(700px) rotateX(.8deg) rotateY(-1.2deg) translateZ(5px) scale(1.01)!important}
-  .audit-modern .category-card:hover img{transform:perspective(700px) rotateX(1deg) rotateY(-1.6deg) translate3d(0,-3px,12px) scale(1.02)!important}
-}
-@media(prefers-reduced-motion:reduce){
-  .audit-modern .category-card,.audit-modern .category-card img{transition:none!important}
-}
-</style>
-
 <style id="audit-ui-v8-final">
 /* فقط اصلاحات ظاهری درخواستی: تصاویر کامل، دکمه کوچک، خروج کوچک روی هدر */
 .audit-modern-header{position:relative;overflow:hidden}
@@ -312,6 +238,59 @@ main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
 .audit-exit{position:absolute!important;top:12px!important;left:14px!important;width:auto!important;min-width:82px!important;height:30px!important;margin:0!important;padding:4px 10px!important;border-radius:8px!important;font:800 9px Vazirmatn!important;z-index:100!important;box-shadow:0 5px 14px #0008!important}
 @media(max-width:700px){.audit-modern .category-card{min-height:155px!important}.audit-modern .category-card .cat-image-wrap{height:82px!important}.audit-exit{top:9px!important;left:9px!important;min-width:76px!important;height:28px!important;font-size:8px!important}}
 </style>
+
+<style id="audit-photo-3d-exact">
+/* فقط افکت سه‌بعدی روی همان عکس‌های اصلی؛ خود تصاویر تغییر نمی‌کنند */
+.audit-modern .category-card{perspective:1100px!important;overflow:visible!important;}
+.audit-modern .category-card .cat-image-wrap{
+  position:relative!important;
+  perspective:900px!important;
+  transform-style:preserve-3d!important;
+  overflow:visible!important;
+  padding:7px!important;
+  background:linear-gradient(145deg,#102b40,#06131f)!important;
+  border-radius:13px 13px 8px 8px!important;
+}
+.audit-modern .category-card .cat-image-wrap::before{
+  content:"";position:absolute;inset:9px 6px 3px 10px;
+  border-radius:9px;z-index:0;
+  background:rgba(0,0,0,.45);
+  filter:blur(8px);
+  transform:translateZ(-22px) translate(7px,9px) scale(.97);
+  opacity:.9;
+}
+.audit-modern .category-card .cat-image-wrap::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:1px;height:12px;
+  border-radius:50%;z-index:0;
+  background:rgba(0,0,0,.65);filter:blur(8px);
+  transform:translateZ(-10px) translateY(5px);
+}
+.audit-modern .category-card .cat-image-wrap img{
+  position:relative!important;z-index:2!important;
+  transform:translateZ(0) rotateX(0deg) rotateY(0deg)!important;
+  transform-origin:center center!important;
+  backface-visibility:hidden!important;
+  border-radius:9px!important;
+  border:1px solid rgba(95,181,226,.38)!important;
+  box-shadow:0 13px 20px rgba(0,0,0,.48),0 2px 5px rgba(255,255,255,.10) inset!important;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,filter .32s ease!important;
+  will-change:transform!important;
+}
+.audit-modern .category-card:hover .cat-image-wrap img{
+  transform:translate3d(0,-5px,34px) rotateX(2deg) rotateY(-3deg) scale(1.025)!important;
+  box-shadow:18px 22px 28px rgba(0,0,0,.58),0 0 0 1px rgba(66,185,255,.22),0 3px 8px rgba(255,255,255,.12) inset!important;
+  filter:saturate(1.05) contrast(1.03) brightness(1.03)!important;
+}
+.audit-modern .category-card:hover .cat-image-wrap::before{transform:translateZ(-25px) translate(10px,12px) scale(.97);opacity:1}
+.audit-modern .category-card:hover .cat-image-wrap::after{opacity:.95}
+.audit-modern .category-card:hover{transform:translateY(-4px)!important;box-shadow:0 22px 42px rgba(0,0,0,.58)!important}
+@media(max-width:700px){
+ .audit-modern .category-card .cat-image-wrap{padding:5px!important}
+ .audit-modern .category-card:hover .cat-image-wrap img{transform:translate3d(0,-3px,18px) rotateX(1deg) rotateY(-2deg) scale(1.018)!important}
+}
+@media(prefers-reduced-motion:reduce){.audit-modern .category-card,.audit-modern .category-card .cat-image-wrap img{transition:none!important}}
+</style>
+
 </head>
 <body>
 <div id="root"></div>
