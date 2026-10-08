@@ -222,6 +222,22 @@ main{background:radial-gradient(circle at 70% 0%,#171018 0,#07090d 42%)}
 @keyframes sirenSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes sirenBlink{from{opacity:.35;box-shadow:0 0 2px #ff2033}to{opacity:1;box-shadow:0 0 14px #ff2033}}
 </style>
+
+<style id="audit-ui-v8-final">
+/* فقط اصلاحات ظاهری درخواستی: تصاویر کامل، دکمه کوچک، خروج کوچک روی هدر */
+.audit-modern-header{position:relative;overflow:hidden}
+.audit-modern-header .audit-header-title{display:none!important}
+.audit-modern-header .audit-header-content{padding-right:18px!important;padding-left:18px!important}
+.audit-modern .category-card{display:flex!important;flex-direction:column!important;min-height:178px!important}
+.audit-modern .category-card .cat-image-wrap{height:108px!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#061522!important;overflow:hidden!important;border-bottom:1px solid #23506b!important}
+.audit-modern .category-card img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:#061522!important;padding:5px!important;box-sizing:border-box!important}
+.audit-modern .category-card .cat-body{flex:1!important;padding:8px 10px 9px!important}
+.audit-modern .category-card .cat-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6px!important}
+.audit-modern .category-card .cat-view-btn{font:800 8px Vazirmatn!important;color:#bfe8ff!important;background:#0b2b43!important;border:1px solid #27709b!important;border-radius:6px!important;padding:3px 7px!important;line-height:1.2!important;white-space:nowrap!important}
+.audit-modern .category-card:hover .cat-view-btn{background:#12527a!important;border-color:#42b9ff!important;color:#fff!important}
+.audit-exit{position:absolute!important;top:12px!important;left:14px!important;width:auto!important;min-width:82px!important;height:30px!important;margin:0!important;padding:4px 10px!important;border-radius:8px!important;font:800 9px Vazirmatn!important;z-index:100!important;box-shadow:0 5px 14px #0008!important}
+@media(max-width:700px){.audit-modern .category-card{min-height:155px!important}.audit-modern .category-card .cat-image-wrap{height:82px!important}.audit-exit{top:9px!important;left:9px!important;min-width:76px!important;height:28px!important;font-size:8px!important}}
+</style>
 </head>
 <body>
 <div id="root"></div>
@@ -358,7 +374,6 @@ async function auditHome(){
     <div class="audit-modern-header">
       <div class="audit-header-content">
         <div class="audit-header-icon">☑️</div>
-        <div class="audit-header-title"><h1>بازرسی و چک‌لیست تجهیزات</h1></div>
         <div class="audit-user"><strong>کارشناس برنامه ریزی</strong><span>امیرجلائی</span></div>
       </div>
     </div>
@@ -373,7 +388,7 @@ async function auditHome(){
     <div class="audit-section">
       <div class="audit-section-head"><h2>دسته‌بندی تجهیزات</h2><button onclick="auditEquipment()">مشاهده همه ←</button></div>
       <div class="audit-category-grid">
-        ${visibleCats.map(c=>`<div class="category-card" onclick="auditEquipment('${c.id}')">${AUDIT_CARD_IMAGES[c.name]?`<img src="${AUDIT_CARD_IMAGES[c.name]}" alt="${esc(c.name)}">`:''}<div class="cat-body"><div class="cat-name">${esc(c.name)}</div><div class="cat-count">${fa(auditEquip.filter(e=>e.category_id===c.id).length)}</div><div class="person-sub">دستگاه</div></div></div>`).join('')}
+        ${visibleCats.map(c=>`<div class="category-card" onclick="auditEquipment('${c.id}')">${AUDIT_CARD_IMAGES[c.name]?`<div class="cat-image-wrap"><img src="${AUDIT_CARD_IMAGES[c.name]}" alt="${esc(c.name)}"></div>`:''}<div class="cat-body"><div class="cat-top"><div class="cat-name">${esc(c.name)}</div><div class="cat-view-btn">مشاهده</div></div><div class="cat-count">${fa(auditEquip.filter(e=>e.category_id===c.id).length)}</div><div class="person-sub">دستگاه</div></div></div>`).join('')}
       </div>
     </div>
 
