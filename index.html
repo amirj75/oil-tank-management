@@ -688,15 +688,23 @@ async function auditDeleteNC(ncId){
     auditHistory();
   }
 }
+function auditShowPhoto(url, title='عکس بازرسی'){
+  if(!url){return}
+  dialog(`<h2>📷 ${esc(title)}</h2><div style="display:flex;justify-content:center;align-items:center;background:#111;border-radius:14px;padding:10px;min-height:220px"><img src="${url}" alt="${esc(title)}" style="display:block;max-width:100%;max-height:70vh;width:auto;height:auto;object-fit:contain;border-radius:10px" onerror="this.outerHTML='<div style=\\'color:#fff;padding:30px;text-align:center\\'>تصویر قابل بارگذاری نیست.</div>'"></div><div class="actions"><a class="save" href="${url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;text-align:center">باز کردن عکس در صفحه جدید</a><button class="cancel" onclick="auditHistory()">بازگشت به تاریخچه</button></div>`);
+}
+
 async function auditHistory(){
   if(!auditIns.length) await loadAudit();
   const rows=auditIns.slice(0,150).map(x=>{
     const e=auditEquip.find(z=>z.id===x.equipment_id),o=auditOps.find(z=>z.id===x.operator_id);
     const ncList=(x.nonconformities||[]).map(n=>`<span style="display:inline-flex;align-items:center;gap:5px;margin:2px;padding:4px 7px;border:1px solid #6f2937;border-radius:8px;background:#321820;color:#ffb1bc">${esc(n.type)} <button type="button" title="حذف این عدم انطباق" onclick="auditDeleteNC('${n.id}')" style="border:0;background:transparent;color:#ff7f8f;cursor:pointer;font-size:14px;line-height:1;padding:0">×</button></span>`).join('');
     const result=ncList?'🔴 '+ncList:'🟢 بدون مشکل';
-    return `<tr><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td><td>${esc(e?.code||'—')}</td><td>${esc(o?.name||'—')}</td><td>${result}</td><td>${x.photo_url?`<a href="${x.photo_url}" target="_blank">📷</a>`:'—'}</td></tr>`
+    const photo=x.photo_url
+      ? `<button type="button" onclick="auditShowPhoto('${x.photo_url}','عکس بازرسی ${new Date(x.created_at).toLocaleDateString('fa-IR')}')" style="display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;padding:2px;border:1px solid #d9aeb2;border-radius:10px;background:#fff;cursor:pointer;overflow:hidden" title="مشاهده عکس"><img src="${x.photo_url}" alt="عکس بازرسی" style="width:52px;height:52px;object-fit:cover;border-radius:8px;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='📷'"></button>`
+      : '—';
+    return `<tr><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td><td>${esc(e?.code||'—')}</td><td>${esc(o?.name||'—')}</td><td>${result}</td><td>${photo}</td></tr>`
   }).join('');
-  dialog(`<h2>📋 تاریخچه بازرسی</h2><div class="hint">برای اصلاح اشتباه، روی × کنار هر عدم انطباق بزنید؛ خودِ بازرسی حذف نمی‌شود.</div><div style="overflow:auto"><table class="table"><thead><tr><th>تاریخ</th><th>تجهیز</th><th>اپراتور</th><th>نتیجه / عدم انطباق</th><th>عکس</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">هنوز بازرسی ثبت نشده است.</td></tr>'}</tbody></table></div><div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
+  dialog(`<h2>📋 تاریخچه بازرسی</h2><div class="hint">برای مشاهده عکس، روی تصویر کوچک کلیک کنید. برای اصلاح اشتباه، روی × کنار هر عدم انطباق بزنید؛ خودِ بازرسی حذف نمی‌شود.</div><div style="overflow:auto"><table class="table"><thead><tr><th>تاریخ</th><th>تجهیز</th><th>اپراتور</th><th>نتیجه / عدم انطباق</th><th>عکس</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">هنوز بازرسی ثبت نشده است.</td></tr>'}</tbody></table></div><div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
 }
 
 function printReport(){let area=document.getElementById('printArea');if(!area){alert('ابتدا یک گزارش را انتخاب کنید.');return}let w=window.open('','_blank');if(!w){alert('پنجره چاپ توسط مرورگر مسدود شده است.');return}let styles=[...document.querySelectorAll('style')].map(s=>s.innerHTML).join('\n');w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>${window.reportType==='out'?'گزارش برداشت روغن':'گزارش ورود روغن'}</title><style>${styles}body{background:#fff!important;color:#111!important;font-family:Tahoma,Arial,sans-serif}#printArea{width:100%;padding:10px}#printArea *{visibility:visible!important}.table{width:100%;border-collapse:collapse}.table th,.table td{border:1px solid #aaa!important;padding:8px;text-align:right}.table th{background:#eee!important}.kpi{border:1px solid #999!important;padding:10px;background:#fff!important}.kpi .label,.kpi .value{color:#111!important}.print-title{font-size:22px;font-weight:bold;margin-bottom:7px}.print-meta{font-size:12px;margin-bottom:14px;color:#333}@page{size:A4 portrait;margin:12mm}</style>
