@@ -488,7 +488,8 @@ function auditReportRows(){
 function renderAuditReport(){
   const area=document.getElementById('auditReportArea'); if(!area)return;
   const rows=auditReportRows();
-  const totalIns=rows.length, ncRows=rows.reduce((a,x)=>a+(x.nonconformities||[]).length,0), badIns=rows.filter(x=>x.result==='nc').length, okIns=rows.filter(x=>x.result==='ok').length;
+  const totalIns=rows.length, ncRows=rows.reduce((a,x)=>a+(x.nonconformities||[]).length,0);
+  const badIns=rows.filter(x=>(x.nonconformities||[]).length>0).length, okIns=totalIns-badIns;
   const compliance=totalIns?Math.round(okIns/totalIns*100):0;
   const ops=auditOps.map(o=>{const ins=rows.filter(x=>x.operator_id===o.id),nc=ins.reduce((a,x)=>a+(x.nonconformities||[]).length,0),score=auditScore(ins);return {name:o.name,ins,nc,score}}).filter(x=>x.ins.length).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.nc-b.nc);
   const ncMap={}; rows.forEach(x=>(x.nonconformities||[]).forEach(n=>ncMap[n.type]=(ncMap[n.type]||0)+1));
@@ -556,7 +557,7 @@ async function auditHistory(){
   const rows=auditIns.slice(0,150).map(x=>{
     const e=auditEquip.find(z=>z.id===x.equipment_id),o=auditOps.find(z=>z.id===x.operator_id);
     const ncList=(x.nonconformities||[]).map(n=>`<span style="display:inline-flex;align-items:center;gap:5px;margin:2px;padding:4px 7px;border:1px solid #6f2937;border-radius:8px;background:#321820;color:#ffb1bc">${esc(n.type)} <button type="button" title="حذف این عدم انطباق" onclick="auditDeleteNC('${n.id}')" style="border:0;background:transparent;color:#ff7f8f;cursor:pointer;font-size:14px;line-height:1;padding:0">×</button></span>`).join('');
-    const result=x.result==='ok'?'🟢 بدون مشکل':`🔴 ${ncList||'<span style="color:#ffb1bc">عدم انطباق</span>'}`;
+    const result=ncList?'🔴 '+ncList:'🟢 بدون مشکل';
     return `<tr><td>${new Date(x.created_at).toLocaleString('fa-IR')}</td><td>${esc(e?.code||'—')}</td><td>${esc(o?.name||'—')}</td><td>${result}</td><td>${x.photo_url?`<a href="${x.photo_url}" target="_blank">📷</a>`:'—'}</td></tr>`
   }).join('');
   dialog(`<h2>📋 تاریخچه بازرسی</h2><div class="hint">برای اصلاح اشتباه، روی × کنار هر عدم انطباق بزنید؛ خودِ بازرسی حذف نمی‌شود.</div><div style="overflow:auto"><table class="table"><thead><tr><th>تاریخ</th><th>تجهیز</th><th>اپراتور</th><th>نتیجه / عدم انطباق</th><th>عکس</th></tr></thead><tbody>${rows||'<tr><td colspan="5" class="empty">هنوز بازرسی ثبت نشده است.</td></tr>'}</tbody></table></div><div class="actions"><button class="cancel" onclick="auditHome()">بازگشت</button></div>`);
@@ -639,7 +640,7 @@ function printReport(){let area=document.getElementById('printArea');if(!area){a
 }
 </style>
 </head><body><div id="printArea">${area.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script>`);w.document.close()}
-function exitAudit(){auditMode=false;closeM();showHome()}function dialog(h){const d=document.getElementById('dialog');d.innerHTML=h;if(auditMode){const ex=document.createElement('button');ex.type='button';ex.className='audit-exit';ex.textContent='✕ خروج از چک‌لیست';ex.onclick=exitAudit;d.prepend(ex)}modal.classList.add('show')}function closeM(){modal.classList.remove('show')}modal.addEventListener('click',e=>{if(e.target===modal)e.stopPropagation()});function tick(){let c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleString('fa-IR',{dateStyle:'full',timeStyle:'medium'})}setInterval(tick,1000);tick();
+function exitAudit(){if(document.getElementById('auditReportArea')){closeM();auditHome();return}auditMode=false;closeM();showHome()}function dialog(h){const d=document.getElementById('dialog');d.innerHTML=h;if(auditMode){const ex=document.createElement('button');ex.type='button';ex.className='audit-exit';ex.textContent='✕ خروج از چک‌لیست';ex.onclick=exitAudit;d.prepend(ex)}modal.classList.add('show')}function closeM(){modal.classList.remove('show')}modal.addEventListener('click',e=>{if(e.target===modal)e.stopPropagation()});function tick(){let c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleString('fa-IR',{dateStyle:'full',timeStyle:'medium'})}setInterval(tick,1000);tick();
 function loginScreen(msg=''){document.getElementById('root').innerHTML=`<div class="login"><div class="loginbox"><h1>سامانه مدیریت و نگهداری و تعمیرات</h1><p>برای ورود، ایمیل و رمز عبور حساب سامانه را وارد کنید.</p><div class="field"><label>ایمیل</label><input id="em" type="email" autocomplete="username"></div><div class="field"><label>رمز عبور</label><input id="pw" type="password" autocomplete="current-password"></div><div class="error" id="le">${msg}</div><button class="save" style="width:100%;padding:11px;border:0;border-radius:10px;font:700 12px Vazirmatn;cursor:pointer" onclick="login()">ورود به سامانه</button><button type="button" onclick="forgotPassword()" style="width:100%;margin-top:9px;padding:10px;border:1px solid #7f222a;border-radius:10px;background:#171c24;color:#ff7b83;font:700 11px Vazirmatn;cursor:pointer">🔑 فراموشی رمز عبور</button></div></div>`}
 async function boot(){if(location.hash.includes('type=recovery')||location.search.includes('type=recovery')){showRecoveryPassword();return}await sb.auth.signOut();loginScreen()}
 async function login(){let e=document.getElementById('em').value.trim(),p=document.getElementById('pw').value,r=await sb.auth.signInWithPassword({email:e,password:p});if(r.error)document.getElementById('le').textContent='ایمیل یا رمز عبور صحیح نیست.';else load()}
