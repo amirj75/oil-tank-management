@@ -300,7 +300,6 @@ async function loadTopConsumption(period='all'){
     else if(period==='3months'){start=new Date(d);start.setMonth(d.getMonth()-3)}
     else if(period==='6months'){start=new Date(d);start.setMonth(d.getMonth()-6)}
     else if(period==='yearly'){start=new Date(d);start.setFullYear(d.getFullYear()-1)}
-    // Fetch first, then normalize legacy/current transaction field names in the browser.
     let q=sb.from('transactions').select('*').order('created_at',{ascending:false});
     if(start)q=q.gte('created_at',start.toISOString());
     const {data,error}=await q.limit(5000);
@@ -314,8 +313,8 @@ async function loadTopConsumption(period='all'){
       const rawAmount=x.amount_l??x.amount??x.quantity_l??x.quantity??x.liters??x.qty??0;
       const amount=Number(rawAmount);
       if(!Number.isFinite(amount)||amount<=0)return;
-      const name=String(x.operator??x.p_operator??x.operator_name??x.user_name??x.operator_full_name??'').trim()||'بدون نام';
-      rank[name]=(rank[name]||0)+amount;
+      const code=String(x.equipment_code??x.equipmentCode??x.machine_code??x.asset_code??'').trim()||'بدون کد تجهیز';
+      rank[code]=(rank[code]||0)+amount;
     });
     const rows=Object.entries(rank).sort((a,b)=>b[1]-a[1]);
     let buttons='<div class="quick" style="grid-template-columns:repeat(5,1fr);margin-bottom:10px">';
@@ -324,13 +323,13 @@ async function loadTopConsumption(period='all'){
     buttons+='<button class="'+(period==='3months'?'save':'cancel')+'" onclick="loadTopConsumption(\'3months\')">۳ ماهه</button>';
     buttons+='<button class="'+(period==='6months'?'save':'cancel')+'" onclick="loadTopConsumption(\'6months\')">۶ ماهه</button>';
     buttons+='<button class="'+(period==='yearly'?'save':'cancel')+'" onclick="loadTopConsumption(\'yearly\')">۱ ساله</button></div>';
-    let html=buttons;
+    let output=buttons;
     if(rows.length){
-      html+='<div style="overflow:auto"><table class="table"><thead><tr><th>رتبه</th><th>اپراتور</th><th>مصرف</th></tr></thead><tbody>';
-      html+=rows.map((x,i)=>'<tr><td>'+fa(i+1)+'</td><td>'+esc(x[0])+'</td><td>'+fa(x[1])+' لیتر</td></tr>').join('');
-      html+='</tbody></table></div>';
-    }else html+='<div class="empty">در این بازه مصرفی ثبت نشده است.</div>';
-    box.innerHTML=html;
+      output+='<div style="overflow:auto"><table class="table"><thead><tr><th>رتبه</th><th>کد تجهیز</th><th>مجموع مصرف</th></tr></thead><tbody>';
+      output+=rows.map((x,i)=>'<tr><td>'+fa(i+1)+'</td><td>'+esc(x[0])+'</td><td>'+fa(x[1])+' لیتر</td></tr>').join('');
+      output+='</tbody></table></div>';
+    }else output+='<div class="empty">در این بازه برداشت دارای مقدار مصرف ثبت‌شده پیدا نشد.</div>';
+    box.innerHTML=output;
   }catch(err){
     console.error('خطا در دریافت آمار بیشترین مصرف:',err);
     box.innerHTML='<div class="error">دریافت آمار مصرف ناموفق بود: '+esc(err?.message||String(err))+'</div>';
