@@ -295,14 +295,17 @@ async function loadTopConsumption(period='all'){
   if(!box)return;
   box.innerHTML='<div class="hint">در حال دریافت آمار مصرف...</div>';
   try{
+    if(typeof sb==='undefined'||!sb)throw new Error('اتصال Supabase در دسترس نیست.');
     let start=null,d=new Date();
     if(period==='monthly')start=new Date(d.getFullYear(),d.getMonth(),1);
     else if(period==='3months'){start=new Date(d);start.setMonth(d.getMonth()-3)}
     else if(period==='6months'){start=new Date(d);start.setMonth(d.getMonth()-6)}
     else if(period==='yearly'){start=new Date(d);start.setFullYear(d.getFullYear()-1)}
-    let q=sb.from('transactions').select('*').order('created_at',{ascending:false});
+    let q=sb.from('transactions').select('type,transaction_type,p_type,kind,amount_l,amount,quantity_l,quantity,liters,qty,equipment_code,equipmentCode,machine_code,asset_code,created_at').order('created_at',{ascending:false});
     if(start)q=q.gte('created_at',start.toISOString());
-    const {data,error}=await q.limit(5000);
+    const queryPromise=q.limit(5000);
+    const timeoutPromise=new Promise((_,reject)=>setTimeout(()=>reject(new Error('پاسخ Supabase بیش از ۱۵ ثانیه طول کشید؛ درخواست متوقف شد.')),15000));
+    const {data,error}=await Promise.race([queryPromise,timeoutPromise]);
     if(error)throw error;
     const records=(data||[]).filter(x=>{
       const type=String(x.type??x.transaction_type??x.p_type??x.kind??'').trim().toLowerCase();
