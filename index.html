@@ -813,54 +813,160 @@ async function changePassword(){dialog(`<h2>🔐 تغییر رمز عبور</h2>
 async function savePassword(){const a=document.getElementById('cp1').value,b=document.getElementById('cp2').value,er=document.getElementById('cper');if(a.length<6){er.textContent='رمز باید حداقل ۶ کاراکتر باشد.';return}if(a!==b){er.textContent='تکرار رمز یکسان نیست.';return}const {error}=await sb.auth.updateUser({password:a});if(error){er.textContent=error.message;return}closeM();alert('رمز عبور با موفقیت تغییر کرد.')}
 boot();
 </script>
-<!-- Voice assistant code added as provided -->
+<!-- دستیار صوتی ارتقایافته -->
 <style>
-  .voice-btn { position: fixed; bottom: 20px; left: 20px; z-index: 99999; background: linear-gradient(135deg, #18a8ff, #0b61a4); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-  .voice-btn.recording { background: linear-gradient(135deg, #ff3948, #b5121b); animation: sirenPulse 1s infinite; }
-  .voice-modal-content { text-align: right; direction: rtl; font-size: 13px; line-height: 2.2; color: #dcecf7; }
-  .voice-modal-content b { color: #27b5ff; font-size: 15px; }
-  @keyframes sirenPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.voice-btn{position:fixed;bottom:20px;left:20px;z-index:99999;background:linear-gradient(135deg,#18a8ff,#0b61a4);color:#fff;border:0;border-radius:50%;width:60px;height:60px;font-size:28px;box-shadow:0 10px 25px #0008;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s}
+.voice-btn.recording{background:linear-gradient(135deg,#ff3948,#b5121b);animation:voicePulse 1s infinite}
+.voice-status{position:fixed;bottom:90px;left:20px;z-index:99999;max-width:min(340px,calc(100vw - 40px));padding:10px 14px;border:1px solid #354554;border-radius:12px;background:#111820;color:#f3f6f8;font:12px/1.9 Vazirmatn,Tahoma,sans-serif;box-shadow:0 8px 25px #0008;display:none;direction:rtl}
+.voice-status.show{display:block}.voice-status.error{border-color:#b5121b}.voice-modal-content{direction:rtl;text-align:right;font:13px/2 Vazirmatn,Tahoma,sans-serif;color:#e7edf3}.voice-modal-content b{color:#64c7ff}
+@keyframes voicePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@media(max-width:600px){.voice-btn{bottom:15px;left:15px;width:56px;height:56px}.voice-status{bottom:80px;left:15px}}
 </style>
-<button id="voiceBtn" class="voice-btn" onclick="toggleVoice()" title="دستیار صوتی">🎤</button>
+<div id="voiceStatus" class="voice-status" role="status" aria-live="polite"></div>
+<button id="voiceBtn" class="voice-btn" type="button" onclick="toggleVoice()" title="دستیار صوتی" aria-label="شروع دستیار صوتی">🎤</button>
 <script>
-  let isRecording = false; let recognition = null;
-  if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition(); recognition.lang = 'fa-IR'; recognition.interimResults = false; recognition.maxAlternatives = 1;
-    recognition.onstart = function() { isRecording = true; document.getElementById('voiceBtn').classList.add('recording'); };
-    recognition.onresult = async function(event) {
-      const transcript = event.results[0][0].transcript; alert("در حال پردازش: " + transcript);
-      try {
-        const { data: { session } } = await sb.auth.getSession();
-        const token = session ? session.access_token : CONFIG.key;
-        const response = await fetch(CONFIG.url + '/functions/v1/parse-oil-voice', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ transcript }) });
-        if (!response.ok) throw new Error('خطا در ارتباط با جمنای');
-        const result = await response.json(); showVoiceConfirmDialog(result);
-      } catch (err) { alert('خطا: ' + err.message); }
+(function(){
+  'use strict';
+  let isRecording=false, recognition=null, pendingVoiceCommand=null;
+  const voiceStatus=document.getElementById('voiceStatus');
+  const faNum=n=>Number(n||0).toLocaleString('fa-IR',{maximumFractionDigits:2});
+  function voiceMessage(message,isError=false,speak=false){
+    if(voiceStatus){voiceStatus.textContent=message;voiceStatus.classList.add('show');voiceStatus.classList.toggle('error',!!isError);}
+    if(speak) speakPersian(message);
+  }
+  function speakPersian(text){
+    if(!('speechSynthesis' in window)) return;
+    try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(text));u.lang='fa-IR';u.rate=.94;u.pitch=1;window.speechSynthesis.speak(u);}catch(e){console.warn('TTS unavailable',e);}
+  }
+  function normalizeFa(text){
+    return String(text||'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[\u064B-\u065F\u0670]/g,'').replace(/\s+/g,' ').trim();
+  }
+  function findTankInText(text){
+    const q=normalizeFa(text);
+    if(!Array.isArray(tanks)) return null;
+    return tanks.find(t=>normalizeFa(t.name).split(/\s+/).some(w=>w.length>1&&q.includes(w)))||null;
+  }
+  function answerLocalQuestion(transcript){
+    const q=normalizeFa(transcript);
+    if(!Array.isArray(tanks)||!tanks.length) return false;
+    const isQuestion=/(چقدر|موجودی|وضعیت|چند لیتر|لیست مخزن|مخزن ها|مخزنها|مخزن‌ها|آخرین تراکنش|آخرین ورود|آخرین برداشت|مصرف امروز|تراکنش امروز|گزارش امروز)/.test(q);
+    if(!isQuestion) return false;
+    const tank=findTankInText(q);
+    if(/آخرین تراکنش|آخرین ورود|آخرین برداشت|تراکنش امروز|گزارش امروز|مصرف امروز/.test(q)){
+      const rows=Array.isArray(ops)?ops:[];
+      const today=/امروز|مصرف امروز/.test(q);
+      const filtered=rows.filter(r=>{
+        const type=normalizeFa(r.type||r.transaction_type||'');
+        const date=new Date(r.created_at||0);
+        const localToday=new Date();localToday.setHours(0,0,0,0);
+        const isToday=date>=localToday;
+        const typeOk=/آخرین ورود/.test(q)?type==='in':(/آخرین برداشت|مصرف امروز/.test(q)?type==='out':true);
+        return typeOk&&(!today||isToday)&&(!tank||String(r.tank_id)===String(tank.id));
+      }).slice(0,5);
+      if(!filtered.length){const msg='تراکنشی مطابق این درخواست در اطلاعات بارگذاری‌شده پیدا نشد.';voiceMessage(msg,false,true);return true;}
+      const lines=filtered.slice(0,3).map(r=>{
+        const t=tanks.find(x=>String(x.id)===String(r.tank_id));
+        const typ=normalizeFa(r.type||r.transaction_type)==='in'?'ورود':'برداشت';
+        const dt=r.created_at?new Date(r.created_at).toLocaleString('fa-IR'):'زمان نامشخص';
+        return `${typ} ${faNum(r.amount_l||r.amount||0)} لیتر، ${t?t.name:'مخزن نامشخص'}، ${dt}`;
+      });
+      const msg=lines.join('؛ ');voiceMessage(msg,false,true);return true;
+    }
+    if(tank){
+      const pct=tank.capacity>0?Math.round(tank.stock/tank.capacity*100):0;
+      const msg=`موجودی ${tank.name} برابر ${faNum(tank.stock)} لیتر از ظرفیت ${faNum(tank.capacity)} لیتر است؛ حدود ${faNum(pct)} درصد ظرفیت.`;
+      voiceMessage(msg,false,true);return true;
+    }
+    if(/لیست مخزن|مخزن ها|مخزنها|مخزن‌ها/.test(q)){
+      const msg=tanks.map(t=>`${t.name}: ${faNum(t.stock)} لیتر`).join('؛ ');
+      voiceMessage(msg,false,true);return true;
+    }
+    const total=tanks.reduce((sum,t)=>sum+Number(t.stock||0),0);
+    const cap=tanks.reduce((sum,t)=>sum+Number(t.capacity||0),0);
+    const msg=`مجموع موجودی ${faNum(total)} لیتر است؛ ظرفیت کل مخازن ${faNum(cap)} لیتر.`;
+    voiceMessage(msg,false,true);return true;
+  }
+  if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+    const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+    recognition=new SpeechRecognition();
+    recognition.lang='fa-IR';recognition.interimResults=false;recognition.maxAlternatives=1;
+    recognition.onstart=function(){isRecording=true;document.getElementById('voiceBtn').classList.add('recording');voiceMessage('گوش می‌دهم؛ دستور یا سؤال را بیان کنید.');};
+    recognition.onresult=async function(event){
+      const transcript=event.results?.[0]?.[0]?.transcript||'';
+      if(!transcript.trim()){voiceMessage('صدایی تشخیص داده نشد. دوباره تلاش کنید.',true,true);return;}
+      voiceMessage(`شنیده شد: «${transcript}» — در حال بررسی...`);
+      try{
+        if(answerLocalQuestion(transcript)) return;
+        const {data:{session}}=await sb.auth.getSession();
+        if(!session){voiceMessage('برای استفاده از دستیار صوتی ابتدا وارد حساب کاربری شوید.',true,true);return;}
+        const response=await fetch(CONFIG.url+'/functions/v1/parse-oil-voice',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Authorization':`Bearer ${session.access_token}`,'apikey':CONFIG.key},
+          body:JSON.stringify({transcript})
+        });
+        let result={};
+        try{result=await response.json();}catch(_){}
+        if(!response.ok) throw new Error(result.error||result.message||`خطا در پردازش فرمان (${response.status})`);
+        if(!result||!['in','out'].includes(result.intent)){voiceMessage('فرمان را به‌عنوان ورود یا برداشت روغن تشخیص ندادم. واضح‌تر بیان کنید.',true,true);return;}
+        showVoiceConfirmDialog(result,transcript);
+      }catch(err){console.error('Voice assistant:',err);voiceMessage(err.message||'خطا در ارتباط با دستیار صوتی.',true,true);}
     };
-    recognition.onerror = function() { alert('خطا در دریافت صدا.'); resetVoiceBtn(); };
-    recognition.onend = function() { resetVoiceBtn(); };
-  } else { alert("مرورگر شما از میکروفون پشتیبانی نمی‌کند."); }
-  function resetVoiceBtn() { isRecording = false; document.getElementById('voiceBtn').classList.remove('recording'); }
-  function toggleVoice() { if (!recognition) return; if (isRecording) recognition.stop(); else recognition.start(); }
-  function showVoiceConfirmDialog(data) {
-    const intentText = data.intent === 'in' ? 'ورود روغن' : (data.intent === 'out' ? 'برداشت روغن' : 'نامشخص');
-    let html = `<h2 style="color:#18a8ff">تایید دستور صوتی</h2><div class="voice-modal-content">عملیات: <b>${intentText}</b><br>`;
-    if(data.tank_name) html += `مخزن: <b>${data.tank_name}</b><br>`;
-    if(data.amount_l) html += `مقدار: <b>${data.amount_l} لیتر</b><br>`;
-    if(data.operator_name) html += `اپراتور: <b>${data.operator_name}</b><br>`;
-    if(data.equipment_code) html += `کد تجهیز: <b>${data.equipment_code}</b><br></div>`;
-    html += `<div class="actions" style="margin-top:20px;"><button class="cancel" onclick="closeM()">لغو</button><button class="save" onclick='executeVoiceCommand(${JSON.stringify(data)})'>تایید و ثبت</button></div>`;
+    recognition.onerror=function(event){
+      const messages={ 'not-allowed':'دسترسی میکروفون داده نشده است. مجوز میکروفون مرورگر را بررسی کنید.','no-speech':'صدایی دریافت نشد؛ دوباره روی میکروفون بزنید.','network':'خطای شبکه در تشخیص صدا.','audio-capture':'میکروفون پیدا نشد.'};
+      voiceMessage(messages[event.error]||'خطا در دریافت صدا. دوباره تلاش کنید.',true,true);
+      resetVoiceBtn();
+    };
+    recognition.onend=resetVoiceBtn;
+  }else{
+    voiceMessage('این مرورگر تشخیص گفتار را پشتیبانی نمی‌کند. از نسخه جدید Chrome یا Edge استفاده کنید.',true);
+  }
+  function resetVoiceBtn(){isRecording=false;const b=document.getElementById('voiceBtn');if(b)b.classList.remove('recording');}
+  window.toggleVoice=function(){
+    if(!recognition){voiceMessage('تشخیص گفتار در این مرورگر در دسترس نیست.',true,true);return;}
+    try{if(isRecording)recognition.stop();else recognition.start();}catch(e){voiceMessage('میکروفون در حال استفاده است یا آماده نیست؛ کمی بعد دوباره تلاش کنید.',true);}
+  };
+  function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  window.showVoiceConfirmDialog=function(data,transcript){
+    pendingVoiceCommand=data;
+    const intentText=data.intent==='in'?'ورود روغن':'برداشت روغن';
+    const items=[
+      ['فرمان شنیده‌شده',transcript||'—'],
+      ['عملیات',intentText],
+      ['مخزن',data.tank_name||'مشخص نشده'],
+      ['مقدار',data.amount_l?`${faNum(data.amount_l)} لیتر`:'مشخص نشده'],
+      ['اپراتور',data.operator_name||'ثبت صوتی'],
+      ['کد تجهیز',data.equipment_code||'ثبت نشده']
+    ];
+    const html=`<h2>تأیید دستور صوتی</h2><div class="hint">قبل از ثبت، اطلاعات را بررسی کنید.</div><div class="voice-modal-content">${items.map(([k,v])=>`<div><b>${safeText(k)}:</b> ${safeText(v)}</div>`).join('')}</div><div class="error" id="voiceConfirmError"></div><div class="actions"><button type="button" class="cancel" onclick="closeM()">لغو</button><button type="button" class="save" id="voiceConfirmBtn" onclick="executeVoiceCommand()">تأیید و ثبت</button></div>`;
     dialog(html);
-  }
-  async function executeVoiceCommand(data) {
-    const tank = tanks.find(t => t.name.includes(data.tank_name) || (data.tank_name && data.tank_name.includes(t.name)));
-    if (!tank && (data.intent === 'in' || data.intent === 'out')) { alert('مخزن یافت نشد.'); return; }
-    const amount = data.amount_l || 0; const op = data.operator_name || 'ثبت صوتی'; const eq = data.equipment_code || null;
-    if (amount <= 0) { alert('مقدار نامعتبر است.'); return; }
-    let errorObj = null;
-    if (data.intent === 'in') { const { error } = await sb.rpc('record_stock_transaction', { p_tank_id: tank ? tank.id : null, p_type: 'in', p_amount_l: amount, p_operator: 'ثبت هوشمند', p_equipment: null }); errorObj = error; } 
-    else if (data.intent === 'out') { const { error } = await sb.rpc('record_stock_transaction', { p_tank_id: tank ? tank.id : null, p_type: 'out', p_amount_l: amount, p_operator: op, p_equipment: eq }); errorObj = error; }
-    if(errorObj) alert('خطا: ' + errorObj.message); else { closeM(); load(); alert('با موفقیت ثبت شد.'); }
-  }
+  };
+  window.executeVoiceCommand=async function(){
+    const data=pendingVoiceCommand;
+    const errEl=document.getElementById('voiceConfirmError');
+    const btn=document.getElementById('voiceConfirmBtn');
+    const fail=msg=>{if(errEl)errEl.textContent=msg;};
+    if(!data){fail('فرمان معتبری برای ثبت وجود ندارد.');return;}
+    const tank=Array.isArray(tanks)?tanks.find(t=>normalizeFa(t.name)===normalizeFa(data.tank_name)||normalizeFa(t.name).includes(normalizeFa(data.tank_name||'!'))||normalizeFa(data.tank_name||'').includes(normalizeFa(t.name))):null;
+    if(!tank){fail('مخزن تشخیص داده‌شده در فهرست مخازن پیدا نشد.');return;}
+    const amount=Number(data.amount_l);
+    if(!Number.isFinite(amount)||amount<=0){fail('مقدار روغن معتبر نیست.');return;}
+    if(data.intent==='out'&&amount>Number(tank.stock)){fail(`موجودی مخزن کافی نیست؛ موجودی فعلی ${faNum(tank.stock)} لیتر است.`);return;}
+    if(btn){btn.disabled=true;btn.textContent='در حال ثبت...';}
+    try{
+      const {data:{session}}=await sb.auth.getSession();
+      if(!session)throw new Error('نشست ورود منقضی شده است؛ دوباره وارد شوید.');
+      const {error}=await sb.rpc('record_stock_transaction',{
+        p_tank_id:tank.id,p_type:data.intent,p_amount_l:amount,
+        p_operator:String(data.operator_name||'ثبت صوتی').slice(0,120),
+        p_equipment:data.equipment_code?String(data.equipment_code).slice(0,120):null
+      });
+      if(error)throw error;
+      closeM();pendingVoiceCommand=null;
+      await load();
+      voiceMessage(`${data.intent==='in'?'ورود':'برداشت'} ${faNum(amount)} لیتر برای ${tank.name} با موفقیت ثبت شد.`,false,true);
+    }catch(e){console.error(e);fail(e.message||'ثبت عملیات ناموفق بود.');}
+    finally{if(btn&&btn.isConnected){btn.disabled=false;btn.textContent='تأیید و ثبت';}}
+  };
+})();
 </script>
 </body></html>
